@@ -63,8 +63,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\ControlScript.cs" />
+    <Compile Include="Assets\Sorter\Data.cs" />
     <Compile Include="Assets\Sorter\FragmentScript.cs" />
     <Compile Include="Assets\Sorter\SensFildScript.cs" />
+    <Compile Include="Assets\Sorter\SorterStart.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/X5X/Documents/Child game/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>

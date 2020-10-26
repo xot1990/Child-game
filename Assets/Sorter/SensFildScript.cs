@@ -6,6 +6,8 @@ public class SensFildScript : MonoBehaviour
 {
 
     public int ID;
+    public int ColorID;
+    public int FormID;
 
     void Start()
     {
