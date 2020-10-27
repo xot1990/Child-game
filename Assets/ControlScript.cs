@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class ControlScript : MonoBehaviour
@@ -21,7 +22,7 @@ public class ControlScript : MonoBehaviour
 
     // GameLvL
 
-    public static int SorterLvL;
+    public static int SorterLvL = 1;
 
     private void Awake()
     {
@@ -69,29 +70,33 @@ public class ControlScript : MonoBehaviour
         List<int> ColorID = new List<int>();
         List<int> FormID = new List<int>();
         bool stopwhile = true;
-
-        foreach (var F in SensFilds)
-        {
+       
+       
             switch(SorterLvL)
             {
                 case 1:
                     {
+                    foreach (var F in SensFilds)
+                    {
+                        
                         while (stopwhile)
                         {
-                            int X = Random.Range(0, 9);
-                            if (!ColorID.Contains(X))
+                            int A = Random.Range(0, 9);
+                            if (!ColorID.Contains(A))
                             {
-                                F.GetComponent<SensFildScript>().ColorID = X;
-                                F.GetComponent<SensFildScript>().FormID = Random.Range(0, 2);
-                                stopwhile = true;
+                                F.transform.GetChild(0).GetComponent<Image>().sprite = Data.SorterList.holes.Find(X => X.ColorID == A && X.FormID == Random.Range(0,2)).sprite;
+                                stopwhile = false;
+                                ColorID.Add(A);
                             }
 
                         }
+                        stopwhile = true;
                     }
-                    break;
+                }
+                break;
             }
             
             
-        }
+        
     }
 }
