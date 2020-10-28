@@ -19,6 +19,8 @@ public class ControlScript : MonoBehaviour
     public static GameObject Sorter;
     public static GameObject SorterBack;
     public static GameObject SorterLenar;
+    public static GameObject SorterFigures;
+    public static GameObject SorterMenuNextLvL;
     public static GameObject[] SensFilds;
     public static GameObject[] Figures;
 
@@ -58,18 +60,49 @@ public class ControlScript : MonoBehaviour
         Sorter = GameObject.Find("Sorter");
         SorterBack = GameObject.Find("BackGround");
         SorterLenar = GameObject.Find("Lenar");
+        SorterFigures = GameObject.Find("Figures");
+        SorterMenuNextLvL = GameObject.Find("MenuNextLvL");
         SensFilds = GameObject.FindGameObjectsWithTag("SensFild");
         Figures = GameObject.FindGameObjectsWithTag("Figure");
 
         // Off Go
 
         Sorter.SetActive(false);
-        
+        SorterMenuNextLvL.SetActive(false);
     }
 
     public void NextLvl()
     {
         SorterLvL++;
+
+        foreach (var F in Figures)
+        {
+            F.transform.parent = SorterFigures.transform;
+            F.transform.position = F.GetComponent<FragmentScript>().StartPos;
+            F.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+            F.GetComponent<Image>().sprite = null;
+            F.GetComponent<Image>().raycastTarget = true;
+            F.SetActive(true);
+        }
+        TotalTimer = 0;
+        SorterMenuNextLvL.SetActive(false);
+        IniSorter();
+    }
+
+    public void ResetLvl()
+    {        
+        foreach (var F in Figures)
+        {
+            F.transform.parent = SorterFigures.transform;
+            F.transform.position = F.GetComponent<FragmentScript>().StartPos;
+            F.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+            F.GetComponent<Image>().sprite = null;
+            F.GetComponent<Image>().raycastTarget = true;
+            F.SetActive(true);
+        }
+        TotalTimer = 0;
+        SorterMenuNextLvL.SetActive(false);
+        IniSorter();
     }
 
     public void IniSorter()
@@ -134,7 +167,7 @@ public class ControlScript : MonoBehaviour
                 }
             break;
 
-            case 4:
+            case 2:
                 {
                     foreach (var F in SensFilds)
                     {

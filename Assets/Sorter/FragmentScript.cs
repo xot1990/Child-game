@@ -21,9 +21,10 @@ public class FragmentScript : MonoBehaviour
     
     void Update()
     {
-        Debug.Log(transform.position);
+
         if (BackOnPos)
         {
+            Debug.Log(StartPos);
             transform.Translate((StartPos - transform.position) * Time.deltaTime *2);
             
         }
@@ -70,6 +71,7 @@ public class FragmentScript : MonoBehaviour
             transform.parent = Back.transform;
             anim.SetBool("Done", true);
             ControlScript.TotalTimer++;
+            if (ControlScript.TotalTimer >= ControlScript.WinTimer) ControlScript.SorterMenuNextLvL.SetActive(true);
            
         }
         else
@@ -84,7 +86,7 @@ public class FragmentScript : MonoBehaviour
 
     public void DelGO()
     {
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
     public void StopAnim()
     {        
