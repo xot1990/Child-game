@@ -11,6 +11,8 @@ public class ControlScript : MonoBehaviour
     public static int SelectedFragment;
     public static int SelectedSensFild;
     public static GameObject Field;
+    public static int WinTimer;
+    public static int TotalTimer = 0;
 
     //Ini GO
 
@@ -65,36 +67,127 @@ public class ControlScript : MonoBehaviour
         
     }
 
+    public void NextLvl()
+    {
+        SorterLvL++;
+    }
+
     public void IniSorter()
     {
+        WinTimer = Figures.Length;
         List<int> ColorID = new List<int>();
         List<int> FormID = new List<int>();
-        bool stopwhile = true;
-       
-       
-            switch(SorterLvL)
+        List<int> FigureID = new List<int>();
+        List<int> HoleID = new List<int>();
+        int HoleCount = 0;
+        bool stopwhile1 = true;
+        bool stopwhile2 = true;
+
+
+        switch (SorterLvL)
             {
-                case 1:
-                    {
+
+            case 1:
+                {
+                    int A = Random.Range(0, 9);
+
                     foreach (var F in SensFilds)
                     {
                         
-                        while (stopwhile)
+                        int R = Random.Range(0, 2);
+                        F.transform.GetChild(0).GetComponent<Image>().sprite = Data.SorterList.holes.Find(X => X.ColorID == A && X.FormID == R).sprite;                        
+                        ColorID.Add(A);
+                        FormID.Add(R);
+                        HoleCount++;
+                        F.GetComponent<SensFildScript>().ID = R;
+                        HoleID.Add(HoleCount);
+                       
+                    }
+                    
+                    foreach (var U in Figures)
+                    {
+                        if (FigureID.Count < HoleCount)
+                        {
+                            while (stopwhile2)
+                            {                                
+                                int t = Random.Range(0, HoleCount);
+                                if(!FigureID.Contains(t))
+                                {
+                                    U.GetComponent<Image>().sprite = Data.SorterList.figures.Find(X => X.ColorID == ColorID[t] && X.FormID == FormID[t]).OnShadow;
+                                    stopwhile2 = false;
+                                    FigureID.Add(t);
+                                    U.GetComponent<FragmentScript>().ID = FormID[t];
+                                    U.GetComponent<Animator>().SetBool("Deselected", true);
+                                }
+                                
+                            }
+                            stopwhile2 = true;
+                        }
+                        else
+                        {
+                            int G = Random.Range(0, HoleCount);
+                            U.GetComponent<Image>().sprite = Data.SorterList.figures.Find(X => X.ColorID == ColorID[G] && X.FormID == FormID[G]).OnShadow;
+                            U.GetComponent<FragmentScript>().ID = FormID[G];
+                            U.GetComponent<Animator>().SetBool("Deselected", true);
+                        }
+                    }
+                }
+            break;
+
+            case 4:
+                {
+                    foreach (var F in SensFilds)
+                    {
+
+                        while (stopwhile1)
                         {
                             int A = Random.Range(0, 9);
                             if (!ColorID.Contains(A))
                             {
-                                F.transform.GetChild(0).GetComponent<Image>().sprite = Data.SorterList.holes.Find(X => X.ColorID == A && X.FormID == Random.Range(0,2)).sprite;
-                                stopwhile = false;
+                                int R = Random.Range(0, 2);
+                                F.transform.GetChild(0).GetComponent<Image>().sprite = Data.SorterList.holes.Find(X => X.ColorID == A && X.FormID == R).sprite;
+                                stopwhile1 = false;
                                 ColorID.Add(A);
+                                FormID.Add(R);
+                                HoleCount++;
+                                F.GetComponent<SensFildScript>().ID = HoleCount;
+                                HoleID.Add(HoleCount);
                             }
 
                         }
-                        stopwhile = true;
+                        stopwhile1 = true;
+                    }
+
+                    foreach (var U in Figures)
+                    {
+                        if (FigureID.Count < HoleCount)
+                        {
+                            while (stopwhile2)
+                            {
+                                int t = Random.Range(0, HoleCount);
+                                if (!FigureID.Contains(t))
+                                {
+                                    U.GetComponent<Image>().sprite = Data.SorterList.figures.Find(X => X.ColorID == ColorID[t] && X.FormID == FormID[t]).OnShadow;
+                                    stopwhile2 = false;
+                                    FigureID.Add(t);
+                                    U.GetComponent<FragmentScript>().ID = HoleID[t];
+                                    U.GetComponent<Animator>().SetBool("Deselected", true);
+                                }
+
+                            }
+                            stopwhile2 = true;
+                        }
+                        else
+                        {
+                            int G = Random.Range(0, HoleCount);
+                            U.GetComponent<Image>().sprite = Data.SorterList.figures.Find(X => X.ColorID == ColorID[G] && X.FormID == FormID[G]).OnShadow;
+                            U.GetComponent<FragmentScript>().ID = HoleID[G];
+                            U.GetComponent<Animator>().SetBool("Deselected", true);
+                        }
                     }
                 }
                 break;
-            }
+        }
             
             
         
