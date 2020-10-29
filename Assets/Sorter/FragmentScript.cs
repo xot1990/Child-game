@@ -24,7 +24,7 @@ public class FragmentScript : MonoBehaviour
 
         if (BackOnPos)
         {
-            Debug.Log(StartPos);
+            Debug.Log(StartPos - transform.position);
             transform.Translate((StartPos - transform.position) * Time.deltaTime *2);
             
         }
@@ -77,7 +77,13 @@ public class FragmentScript : MonoBehaviour
         else
         {
             anim.SetBool("Deselected", true);
-            if (transform.position.x < Back.transform.position.x) BackOnPos = true;
+            if (transform.position.x < Back.transform.position.x)
+            {
+                BackOnPos = true;
+                ControlScript.Life--;
+                ControlScript.SorterLifes.transform.GetChild(ControlScript.Life).gameObject.SetActive(false);
+                if (ControlScript.Life == 0) ControlScript.SorterMenuGameOver.SetActive(true);
+            }
             else StartPos = transform.position;
             GetComponent<Image>().raycastTarget = true;
             ControlScript.SelectedFragment = -1;
