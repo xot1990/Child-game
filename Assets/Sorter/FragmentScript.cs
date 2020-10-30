@@ -24,13 +24,13 @@ public class FragmentScript : MonoBehaviour
 
         if (BackOnPos)
         {
-            Debug.Log(StartPos - transform.position);
+
             transform.Translate((StartPos - transform.position) * Time.deltaTime *2);
             
         }
         if (StartPos.x - 0.2f <= transform.position.x && StartPos.x + 0.2f >= transform.position.x && StartPos.y - 0.2f <= transform.position.y && StartPos.y + 0.2f >= transform.position.y && BackOnPos)
         {
-            Debug.Log("2");
+            
             transform.position = StartPos;
             BackOnPos = false;
         }

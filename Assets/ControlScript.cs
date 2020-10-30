@@ -13,7 +13,7 @@ public class ControlScript : MonoBehaviour
     public static GameObject Field;
     public static int WinTimer;
     public static int TotalTimer = 0;
-    public static int Life = 3;
+    public static int Life = 6;
 
     //Ini GO
 
@@ -135,7 +135,7 @@ public class ControlScript : MonoBehaviour
             SorterLifes.transform.GetChild(i).gameObject.SetActive(true);
         }
 
-        Life = 3;
+        Life = 6;
 
         SorterMenuNextLvL.SetActive(false);
         SorterMenuGameOver.SetActive(false);
@@ -162,7 +162,7 @@ public class ControlScript : MonoBehaviour
             SorterLifes.transform.GetChild(i).gameObject.SetActive(true);
         }
 
-        Life = 3;
+        Life = 6;
 
         SorterMenuNextLvL.SetActive(false);
         SorterMenuGameOver.SetActive(false);
