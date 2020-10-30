@@ -14,6 +14,7 @@ public class ControlScript : MonoBehaviour
     public static int WinTimer;
     public static int TotalTimer = 0;
     public static int Life = 6;
+    public static int _Score = 0;
 
     //Ini GO
 
@@ -25,6 +26,7 @@ public class ControlScript : MonoBehaviour
     public static GameObject SorterFigures;
     public static GameObject SorterMenuNextLvL;
     public static GameObject SorterMenuGameOver;
+    public static GameObject Score;
     public static GameObject[] SensFilds;
     public static GameObject[] Figures;
 
@@ -68,6 +70,7 @@ public class ControlScript : MonoBehaviour
         SorterFigures = GameObject.Find("Figures");
         SorterMenuNextLvL = GameObject.Find("MenuNextLvL");
         SorterMenuGameOver = GameObject.Find("MenuGameOver");
+        Score = GameObject.Find("Score");
         SensFilds = GameObject.FindGameObjectsWithTag("SensFild");
         Figures = GameObject.FindGameObjectsWithTag("Figure");
         MainMenu = GameObject.Find("MainMenu");
@@ -200,8 +203,10 @@ public class ControlScript : MonoBehaviour
                         ColorID.Add(A);
                         FormID.Add(R);
                         HoleCount++;
-                        F.GetComponent<SensFildScript>().ID = R;
-                        HoleID.Add(HoleCount);
+                        string Q = "" + R + A;
+                        int.TryParse(Q, out C);
+                        F.GetComponent<SensFildScript>().ID = C;
+                        HoleID.Add(C);
                        
                     }
                     
@@ -217,7 +222,7 @@ public class ControlScript : MonoBehaviour
                                     U.GetComponent<Image>().sprite = Data.SorterList.figures.Find(X => X.ColorID == ColorID[t] && X.FormID == FormID[t]).OnShadow;
                                     stopwhile2 = false;
                                     FigureID.Add(t);
-                                    U.GetComponent<FragmentScript>().ID = FormID[t];
+                                    U.GetComponent<FragmentScript>().ID = HoleID[t];
                                     U.GetComponent<Animator>().SetBool("Deselected", true);
                                 }
                                 
@@ -227,8 +232,8 @@ public class ControlScript : MonoBehaviour
                         else
                         {
                             int G = Random.Range(0, HoleCount);
-                            U.GetComponent<Image>().sprite = Data.SorterList.figures.Find(X => X.ColorID == ColorID[G] && X.FormID == FormID[G]).OnShadow;
-                            U.GetComponent<FragmentScript>().ID = FormID[G];
+                            U.GetComponent<Image>().sprite = Data.SorterList.figures.Find(X => X.ColorID == ColorID[G] && X.FormID == FormID[G]).OnShadow;                            
+                            U.GetComponent<FragmentScript>().ID = HoleID[G];
                             U.GetComponent<Animator>().SetBool("Deselected", true);
                         }
                     }
@@ -262,7 +267,6 @@ public class ControlScript : MonoBehaviour
                         string Q = "" + R + A;                        
                         int.TryParse(Q, out C);
                         F.GetComponent<SensFildScript>().ID = C;
-                        
                         HoleID.Add(C);
 
                     }

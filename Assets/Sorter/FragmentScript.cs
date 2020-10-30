@@ -71,6 +71,8 @@ public class FragmentScript : MonoBehaviour
             transform.parent = Back.transform;
             anim.SetBool("Done", true);
             ControlScript.TotalTimer++;
+            ControlScript._Score += 5 * (int)Mathf.Pow(ControlScript.SorterLvL,2);            
+            ControlScript.Score.GetComponent<Text>().text = "" + ControlScript._Score;            
             if (ControlScript.TotalTimer >= ControlScript.WinTimer) ControlScript.SorterMenuNextLvL.SetActive(true);
            
         }
@@ -80,9 +82,12 @@ public class FragmentScript : MonoBehaviour
             if (transform.position.x < Back.transform.position.x)
             {
                 BackOnPos = true;
-                ControlScript.Life--;
-                ControlScript.SorterLifes.transform.GetChild(ControlScript.Life).gameObject.SetActive(false);
-                if (ControlScript.Life == 0) ControlScript.SorterMenuGameOver.SetActive(true);
+                if (ControlScript.SorterLvL > 2)
+                {
+                    ControlScript.Life--;
+                    ControlScript.SorterLifes.transform.GetChild(ControlScript.Life).gameObject.SetActive(false);
+                    if (ControlScript.Life == 0) ControlScript.SorterMenuGameOver.SetActive(true);
+                }
             }
             else StartPos = transform.position;
             GetComponent<Image>().raycastTarget = true;

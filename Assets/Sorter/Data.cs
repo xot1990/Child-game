@@ -376,7 +376,7 @@ public class Data : ScriptableObject
                 {
                     ColorID = 7,
                     FormID = 4,
-                    OnShadow = Resources.Load<Sprite>("Sorter/FigureOnShadow//Сircle/Orange"),
+                    OnShadow = Resources.Load<Sprite>("Sorter/FigureOnShadow/Сircle/Orange"),
                     sprite = Resources.Load<Sprite>("Sorter/Figure/Сircle/Orange"),
                 },
 
