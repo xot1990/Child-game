@@ -11,8 +11,15 @@ public class FragmentScript : MonoBehaviour
     public bool BackOnPos;
     Animator anim;
 
+    // Audio
+
+    public AudioSource audio;
+    public AudioClip Wrong;
+    public AudioClip Right;
+
     void Start()
     {
+        audio = GetComponent<AudioSource>();
         StartPos = transform.position;
         anim = GetComponent<Animator>();
         Back = GameObject.Find("BackGround");
@@ -70,6 +77,7 @@ public class FragmentScript : MonoBehaviour
             transform.position = ControlScript.Field.transform.position;
             transform.parent = Back.transform;
             anim.SetBool("Done", true);
+            audio.PlayOneShot(Right);
             ControlScript.TotalTimer++;
             ControlScript._Score += 5 * (int)Mathf.Pow(ControlScript.SorterLvL,2);            
             ControlScript.Score.GetComponent<Text>().text = "" + ControlScript._Score;            
@@ -79,6 +87,7 @@ public class FragmentScript : MonoBehaviour
         else
         {
             anim.SetBool("Deselected", true);
+            audio.PlayOneShot(Wrong);
             if (transform.position.x < Back.transform.position.x)
             {
                 BackOnPos = true;

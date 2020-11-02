@@ -19,10 +19,22 @@ public class Data : ScriptableObject
         public Sprite sprite;
     }
 
+    public class Animal
+    {
+        public int ID;
+        public string Name;
+        public Sprite Picture;
+        public Sprite Image1;
+        public Sprite Image2;
+        public Sprite Image3;
+        public AudioClip Sound;
+    }
+
     public static class SorterList
     {
         public static List<Figure> figures;
         public static List<Hole> holes;
+        public static List<Animal> Animals;
 
         public static void Initialize()
         {
@@ -387,6 +399,222 @@ public class Data : ScriptableObject
                     OnShadow = Resources.Load<Sprite>("Sorter/FigureOnShadow/Сircle/Aquamarine"),
                     sprite = Resources.Load<Sprite>("Sorter/Figure/Сircle/Aquamarine"),
                 },
+
+                new Figure
+                {
+                    ColorID = 0,
+                    FormID = 5,
+                    OnShadow = Resources.Load<Sprite>("Sorter/FigureOnShadow/Ellipse/Red"),
+                    sprite = Resources.Load<Sprite>("Sorter/Figure/Ellipse/Red"),
+                },
+
+                new Figure
+                {
+                    ColorID = 1,
+                    FormID = 5,
+                    OnShadow = Resources.Load<Sprite>("Sorter/FigureOnShadow/Ellipse/Blue"),
+                    sprite = Resources.Load<Sprite>("Sorter/Figure/Ellipse/Blue"),
+                },
+
+                new Figure
+                {
+                    ColorID = 2,
+                    FormID = 5,
+                    OnShadow = Resources.Load<Sprite>("Sorter/FigureOnShadow/Ellipse/Yellow"),
+                    sprite = Resources.Load<Sprite>("Sorter/Figure/Ellipse/Yellow"),
+                },
+
+                new Figure
+                {
+                    ColorID = 3,
+                    FormID = 5,
+                    OnShadow = Resources.Load<Sprite>("Sorter/FigureOnShadow/Ellipse/Green"),
+                    sprite = Resources.Load<Sprite>("Sorter/Figure/Ellipse/Green"),
+                },
+
+                new Figure
+                {
+                    ColorID = 4,
+                    FormID = 5,
+                    OnShadow = Resources.Load<Sprite>("Sorter/FigureOnShadow/Ellipse/Pink"),
+                    sprite = Resources.Load<Sprite>("Sorter/Figure/Ellipse/Pink"),
+                },
+
+                new Figure
+                {
+                    ColorID = 5,
+                    FormID = 5,
+                    OnShadow = Resources.Load<Sprite>("Sorter/FigureOnShadow/Ellipse/Violet"),
+                    sprite = Resources.Load<Sprite>("Sorter/Figure/Ellipse/Violet"),
+                },
+
+                new Figure
+                {
+                    ColorID = 6,
+                    FormID = 5,
+                    OnShadow = Resources.Load<Sprite>("Sorter/FigureOnShadow/Ellipse/Brown"),
+                    sprite = Resources.Load<Sprite>("Sorter/Figure/Ellipse/Brown"),
+                },
+
+                new Figure
+                {
+                    ColorID = 7,
+                    FormID = 5,
+                    OnShadow = Resources.Load<Sprite>("Sorter/FigureOnShadow/Ellipse/Orange"),
+                    sprite = Resources.Load<Sprite>("Sorter/Figure/Ellipse/Orange"),
+                },
+
+                new Figure
+                {
+                    ColorID = 8,
+                    FormID = 5,
+                    OnShadow = Resources.Load<Sprite>("Sorter/FigureOnShadow/Ellipse/Aquamarine"),
+                    sprite = Resources.Load<Sprite>("Sorter/Figure/Ellipse/Aquamarine"),
+                },
+
+                new Figure
+                {
+                    ColorID = 0,
+                    FormID = 6,
+                    OnShadow = Resources.Load<Sprite>("Sorter/FigureOnShadow/Pentagon/Red"),
+                    sprite = Resources.Load<Sprite>("Sorter/Figure/Pentagon/Red"),
+                },
+
+                new Figure
+                {
+                    ColorID = 1,
+                    FormID = 6,
+                    OnShadow = Resources.Load<Sprite>("Sorter/FigureOnShadow/Pentagon/Blue"),
+                    sprite = Resources.Load<Sprite>("Sorter/Figure/Pentagon/Blue"),
+                },
+
+                new Figure
+                {
+                    ColorID = 2,
+                    FormID = 6,
+                    OnShadow = Resources.Load<Sprite>("Sorter/FigureOnShadow/Pentagon/Yellow"),
+                    sprite = Resources.Load<Sprite>("Sorter/Figure/Pentagon/Yellow"),
+                },
+
+                new Figure
+                {
+                    ColorID = 3,
+                    FormID = 6,
+                    OnShadow = Resources.Load<Sprite>("Sorter/FigureOnShadow/Pentagon/Green"),
+                    sprite = Resources.Load<Sprite>("Sorter/Figure/Pentagon/Green"),
+                },
+
+                new Figure
+                {
+                    ColorID = 4,
+                    FormID = 6,
+                    OnShadow = Resources.Load<Sprite>("Sorter/FigureOnShadow/Pentagon/Pink"),
+                    sprite = Resources.Load<Sprite>("Sorter/Figure/Pentagon/Pink"),
+                },
+
+                new Figure
+                {
+                    ColorID = 5,
+                    FormID = 6,
+                    OnShadow = Resources.Load<Sprite>("Sorter/FigureOnShadow/Pentagon/Violet"),
+                    sprite = Resources.Load<Sprite>("Sorter/Figure/Pentagon/Violet"),
+                },
+
+                new Figure
+                {
+                    ColorID = 6,
+                    FormID = 6,
+                    OnShadow = Resources.Load<Sprite>("Sorter/FigureOnShadow/Pentagon/Brown"),
+                    sprite = Resources.Load<Sprite>("Sorter/Figure/Pentagon/Brown"),
+                },
+
+                new Figure
+                {
+                    ColorID = 7,
+                    FormID = 6,
+                    OnShadow = Resources.Load<Sprite>("Sorter/FigureOnShadow/Pentagon/Orange"),
+                    sprite = Resources.Load<Sprite>("Sorter/Figure/Pentagon/Orange"),
+                },
+
+                new Figure
+                {
+                    ColorID = 8,
+                    FormID = 6,
+                    OnShadow = Resources.Load<Sprite>("Sorter/FigureOnShadow/Pentagon/Aquamarine"),
+                    sprite = Resources.Load<Sprite>("Sorter/Figure/Pentagon/Aquamarine"),
+                },
+
+                new Figure
+                {
+                    ColorID = 0,
+                    FormID = 7,
+                    OnShadow = Resources.Load<Sprite>("Sorter/FigureOnShadow/Rectangle/Red"),
+                    sprite = Resources.Load<Sprite>("Sorter/Figure/Rectangle/Red"),
+                },
+
+                new Figure
+                {
+                    ColorID = 1,
+                    FormID = 7,
+                    OnShadow = Resources.Load<Sprite>("Sorter/FigureOnShadow/Rectangle/Blue"),
+                    sprite = Resources.Load<Sprite>("Sorter/Figure/Rectangle/Blue"),
+                },
+
+                new Figure
+                {
+                    ColorID = 2,
+                    FormID = 7,
+                    OnShadow = Resources.Load<Sprite>("Sorter/FigureOnShadow/Rectangle/Yellow"),
+                    sprite = Resources.Load<Sprite>("Sorter/Figure/Rectangle/Yellow"),
+                },
+
+                new Figure
+                {
+                    ColorID = 3,
+                    FormID = 7,
+                    OnShadow = Resources.Load<Sprite>("Sorter/FigureOnShadow/Rectangle/Green"),
+                    sprite = Resources.Load<Sprite>("Sorter/Figure/Rectangle/Green"),
+                },
+
+                new Figure
+                {
+                    ColorID = 4,
+                    FormID = 7,
+                    OnShadow = Resources.Load<Sprite>("Sorter/FigureOnShadow/Rectangle/Pink"),
+                    sprite = Resources.Load<Sprite>("Sorter/Figure/Rectangle/Pink"),
+                },
+
+                new Figure
+                {
+                    ColorID = 5,
+                    FormID = 7,
+                    OnShadow = Resources.Load<Sprite>("Sorter/FigureOnShadow/Rectangle/Violet"),
+                    sprite = Resources.Load<Sprite>("Sorter/Figure/Rectangle/Violet"),
+                },
+
+                new Figure
+                {
+                    ColorID = 6,
+                    FormID = 7,
+                    OnShadow = Resources.Load<Sprite>("Sorter/FigureOnShadow/Rectangle/Brown"),
+                    sprite = Resources.Load<Sprite>("Sorter/Figure/Rectangle/Brown"),
+                },
+
+                new Figure
+                {
+                    ColorID = 7,
+                    FormID = 7,
+                    OnShadow = Resources.Load<Sprite>("Sorter/FigureOnShadow/Rectangle/Orange"),
+                    sprite = Resources.Load<Sprite>("Sorter/Figure/Rectangle/Orange"),
+                },
+
+                new Figure
+                {
+                    ColorID = 8,
+                    FormID = 7,
+                    OnShadow = Resources.Load<Sprite>("Sorter/FigureOnShadow/Rectangle/Aquamarine"),
+                    sprite = Resources.Load<Sprite>("Sorter/Figure/Rectangle/Aquamarine"),
+                },
             };
 
             holes = new List<Hole>
@@ -704,6 +932,208 @@ public class Data : ScriptableObject
                     ColorID = 8,
                     FormID = 4,
                     sprite = Resources.Load<Sprite>("Sorter/Hole/Сircle/Aquamarine"),
+                },
+
+                new Hole
+                {
+                    ColorID = 0,
+                    FormID = 5,
+                    sprite = Resources.Load<Sprite>("Sorter/Hole/Ellipse/Red"),
+                },
+
+                new Hole
+                {
+                    ColorID = 1,
+                    FormID = 5,
+                    sprite = Resources.Load<Sprite>("Sorter/Hole/Ellipse/Blue"),
+                },
+
+                new Hole
+                {
+                    ColorID = 2,
+                    FormID = 5,
+                    sprite = Resources.Load<Sprite>("Sorter/Hole/Ellipse/Yellow"),
+                },
+
+                new Hole
+                {
+                    ColorID = 3,
+                    FormID = 5,
+                    sprite = Resources.Load<Sprite>("Sorter/Hole/Ellipse/Green"),
+                },
+
+                new Hole
+                {
+                    ColorID = 4,
+                    FormID = 5,
+                    sprite = Resources.Load<Sprite>("Sorter/Hole/Ellipse/Pink"),
+                },
+
+                new Hole
+                {
+                    ColorID = 5,
+                    FormID = 5,
+                    sprite = Resources.Load<Sprite>("Sorter/Hole/Ellipse/Violet"),
+                },
+
+                new Hole
+                {
+                    ColorID = 6,
+                    FormID = 5,
+                    sprite = Resources.Load<Sprite>("Sorter/Hole/Ellipse/Brown"),
+                },
+
+                new Hole
+                {
+                    ColorID = 7,
+                    FormID = 5,
+                    sprite = Resources.Load<Sprite>("Sorter/Hole/Ellipse/Orange"),
+                },
+
+                new Hole
+                {
+                    ColorID = 8,
+                    FormID = 5,
+                    sprite = Resources.Load<Sprite>("Sorter/Hole/Ellipse/Aquamarine"),
+                },
+
+                new Hole
+                {
+                    ColorID = 0,
+                    FormID = 6,
+                    sprite = Resources.Load<Sprite>("Sorter/Hole/Pentagon/Red"),
+                },
+
+                new Hole
+                {
+                    ColorID = 1,
+                    FormID = 6,
+                    sprite = Resources.Load<Sprite>("Sorter/Hole/Pentagon/Blue"),
+                },
+
+                new Hole
+                {
+                    ColorID = 2,
+                    FormID = 6,
+                    sprite = Resources.Load<Sprite>("Sorter/Hole/Pentagon/Yellow"),
+                },
+
+                new Hole
+                {
+                    ColorID = 3,
+                    FormID = 6,
+                    sprite = Resources.Load<Sprite>("Sorter/Hole/Pentagon/Green"),
+                },
+
+                new Hole
+                {
+                    ColorID = 4,
+                    FormID = 6,
+                    sprite = Resources.Load<Sprite>("Sorter/Hole/Pentagon/Pink"),
+                },
+
+                new Hole
+                {
+                    ColorID = 5,
+                    FormID = 6,
+                    sprite = Resources.Load<Sprite>("Sorter/Hole/Pentagon/Violet"),
+                },
+
+                new Hole
+                {
+                    ColorID = 6,
+                    FormID = 6,
+                    sprite = Resources.Load<Sprite>("Sorter/Hole/Pentagon/Brown"),
+                },
+
+                new Hole
+                {
+                    ColorID = 7,
+                    FormID = 6,
+                    sprite = Resources.Load<Sprite>("Sorter/Hole/Pentagon/Orange"),
+                },
+
+                new Hole
+                {
+                    ColorID = 8,
+                    FormID = 6,
+                    sprite = Resources.Load<Sprite>("Sorter/Hole/Pentagon/Aquamarine"),
+                },
+
+                new Hole
+                {
+                    ColorID = 0,
+                    FormID = 7,
+                    sprite = Resources.Load<Sprite>("Sorter/Hole/Rectangle/Red"),
+                },
+
+                new Hole
+                {
+                    ColorID = 1,
+                    FormID = 7,
+                    sprite = Resources.Load<Sprite>("Sorter/Hole/Rectangle/Blue"),
+                },
+
+                new Hole
+                {
+                    ColorID = 2,
+                    FormID = 7,
+                    sprite = Resources.Load<Sprite>("Sorter/Hole/Rectangle/Yellow"),
+                },
+
+                new Hole
+                {
+                    ColorID = 3,
+                    FormID = 7,
+                    sprite = Resources.Load<Sprite>("Sorter/Hole/Rectangle/Green"),
+                },
+
+                new Hole
+                {
+                    ColorID = 4,
+                    FormID = 7,
+                    sprite = Resources.Load<Sprite>("Sorter/Hole/Rectangle/Pink"),
+                },
+
+                new Hole
+                {
+                    ColorID = 5,
+                    FormID = 7,
+                    sprite = Resources.Load<Sprite>("Sorter/Hole/Rectangle/Violet"),
+                },
+
+                new Hole
+                {
+                    ColorID = 6,
+                    FormID = 7,
+                    sprite = Resources.Load<Sprite>("Sorter/Hole/Rectangle/Brown"),
+                },
+
+                new Hole
+                {
+                    ColorID = 7,
+                    FormID = 7,
+                    sprite = Resources.Load<Sprite>("Sorter/Hole/Rectangle/Orange"),
+                },
+
+                new Hole
+                {
+                    ColorID = 8,
+                    FormID = 7,
+                    sprite = Resources.Load<Sprite>("Sorter/Hole/Rectangle/Aquamarine"),
+                },
+            };
+
+            Animals = new List<Animal>
+            {
+                new Animal
+                {
+                    ID = 0,
+                    Name = "Cow",
+                    Picture = Resources.Load<Sprite>("AnimalSound/Cow/Picture"),
+                    Image1 = Resources.Load<Sprite>("AnimalSound/Cow/Image1"),
+                    Image2 = Resources.Load<Sprite>("AnimalSound/Cow/Image2"),
+                    Image3 = Resources.Load<Sprite>("AnimalSound/Cow/Image3"),
                 },
             };
         }

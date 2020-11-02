@@ -15,6 +15,7 @@ public class ControlScript : MonoBehaviour
     public static int TotalTimer = 0;
     public static int Life = 6;
     public static int _Score = 0;
+    
 
     //Ini GO
 
@@ -30,9 +31,18 @@ public class ControlScript : MonoBehaviour
     public static GameObject[] SensFilds;
     public static GameObject[] Figures;
 
+    public static GameObject AnimalSound;
+    public static GameObject AnimalImage;
+
+
     // GameLvL
 
     public static int SorterLvL = 1;
+
+    // Audio
+
+    public AudioSource Audio;
+    public AudioClip MenuMusic;
 
     private void Awake()
     {
@@ -74,31 +84,53 @@ public class ControlScript : MonoBehaviour
         SensFilds = GameObject.FindGameObjectsWithTag("SensFild");
         Figures = GameObject.FindGameObjectsWithTag("Figure");
         MainMenu = GameObject.Find("MainMenu");
+        AnimalSound = GameObject.Find("AnimalSound");
+        AnimalImage = GameObject.Find("AnimalImage");
 
         // Off Go
 
         Sorter.SetActive(false);
         SorterMenuNextLvL.SetActive(false);
         SorterMenuGameOver.SetActive(false);
+        AnimalSound.SetActive(false);
     }
 
     public void NextLvl()
     {
-        SorterLvL++;
-
-        foreach (var F in Figures)
+        if (SorterLvL < 8)
         {
-            F.transform.parent = SorterFigures.transform;
-            F.transform.position = F.GetComponent<FragmentScript>().StartPos;
-            F.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
-            F.GetComponent<RectTransform>().rotation = Quaternion.Euler(0,0,0);
-            F.GetComponent<Image>().sprite = null;
-            F.GetComponent<Image>().raycastTarget = true;
-            F.SetActive(true);
+            SorterLvL++;
+
+            foreach (var F in Figures)
+            {
+                F.transform.parent = SorterFigures.transform;
+                F.transform.position = F.GetComponent<FragmentScript>().StartPos;
+                F.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+                F.GetComponent<RectTransform>().rotation = Quaternion.Euler(0, 0, 0);
+                F.GetComponent<Image>().sprite = null;
+                F.GetComponent<Image>().raycastTarget = true;
+                F.SetActive(true);
+            }
+            TotalTimer = 0;
+            SorterMenuNextLvL.SetActive(false);
+            IniSorter();
         }
-        TotalTimer = 0;
-        SorterMenuNextLvL.SetActive(false);
-        IniSorter();
+        else
+        {
+            foreach (var F in Figures)
+            {
+                F.transform.parent = SorterFigures.transform;
+                F.transform.position = F.GetComponent<FragmentScript>().StartPos;
+                F.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+                F.GetComponent<RectTransform>().rotation = Quaternion.Euler(0, 0, 0);
+                F.GetComponent<Image>().sprite = null;
+                F.GetComponent<Image>().raycastTarget = true;
+                F.SetActive(true);
+            }
+            TotalTimer = 0;
+            SorterMenuNextLvL.SetActive(false);
+            IniSorter();
+        }
     }
 
     public void ResetLvl()
@@ -198,7 +230,7 @@ public class ControlScript : MonoBehaviour
                     foreach (var F in SensFilds)
                     {
                         
-                        int R = Random.Range(0, 5);
+                        int R = Random.Range(0, 8);
                         F.transform.GetChild(0).GetComponent<Image>().sprite = Data.SorterList.holes.Find(X => X.ColorID == A && X.FormID == R).sprite;                        
                         ColorID.Add(A);
                         FormID.Add(R);
@@ -390,7 +422,6 @@ public class ControlScript : MonoBehaviour
                         string Q = "" + R + A;
                         int.TryParse(Q, out C);
                         F.GetComponent<SensFildScript>().ID = C;
-
                         HoleID.Add(C);
 
                     }
@@ -441,8 +472,178 @@ public class ControlScript : MonoBehaviour
                                 ColorID.Add(A);
                                 FormID.Add(R);
                                 HoleCount++;
-                                F.GetComponent<SensFildScript>().ID = HoleCount;
-                                HoleID.Add(HoleCount);
+                                string Q = "" + R + A;
+                                int.TryParse(Q, out C);
+                                F.GetComponent<SensFildScript>().ID = C;
+                                HoleID.Add(C);
+                            }
+
+                        }
+                        stopwhile1 = true;
+                    }
+
+                    foreach (var U in Figures)
+                    {
+                        if (FigureID.Count < HoleCount)
+                        {
+                            while (stopwhile2)
+                            {
+                                int t = Random.Range(0, HoleCount);
+                                if (!FigureID.Contains(t))
+                                {
+                                    U.GetComponent<Image>().sprite = Data.SorterList.figures.Find(X => X.ColorID == ColorID[t] && X.FormID == FormID[t]).OnShadow;
+                                    stopwhile2 = false;
+                                    FigureID.Add(t);
+                                    U.GetComponent<FragmentScript>().ID = HoleID[t];
+                                    U.GetComponent<Animator>().SetBool("Deselected", true);
+                                }
+
+                            }
+                            stopwhile2 = true;
+                        }
+                        else
+                        {
+                            int G = Random.Range(0, HoleCount);
+                            U.GetComponent<Image>().sprite = Data.SorterList.figures.Find(X => X.ColorID == ColorID[G] && X.FormID == FormID[G]).OnShadow;
+                            U.GetComponent<FragmentScript>().ID = HoleID[G];
+                            U.GetComponent<Animator>().SetBool("Deselected", true);
+                        }
+                    }
+                }
+                break;
+
+            case 6:
+                {
+                    foreach (var F in SensFilds)
+                    {
+
+                        while (stopwhile1)
+                        {
+                            int A = Random.Range(0, 9);
+                            if (!ColorID.Contains(A))
+                            {
+                                int R = Random.Range(0, 4);
+                                F.transform.GetChild(0).GetComponent<Image>().sprite = Data.SorterList.holes.Find(X => X.ColorID == A && X.FormID == R).sprite;
+                                stopwhile1 = false;
+                                ColorID.Add(A);
+                                FormID.Add(R);
+                                HoleCount++;
+                                string Q = "" + R + A;
+                                int.TryParse(Q, out C);
+                                F.GetComponent<SensFildScript>().ID = C;
+                                HoleID.Add(C);
+                            }
+
+                        }
+                        stopwhile1 = true;
+                    }
+
+                    foreach (var U in Figures)
+                    {
+                        if (FigureID.Count < HoleCount)
+                        {
+                            while (stopwhile2)
+                            {
+                                int t = Random.Range(0, HoleCount);
+                                if (!FigureID.Contains(t))
+                                {
+                                    U.GetComponent<Image>().sprite = Data.SorterList.figures.Find(X => X.ColorID == ColorID[t] && X.FormID == FormID[t]).OnShadow;
+                                    stopwhile2 = false;
+                                    FigureID.Add(t);
+                                    U.GetComponent<FragmentScript>().ID = HoleID[t];
+                                    U.GetComponent<Animator>().SetBool("Deselected", true);
+                                }
+
+                            }
+                            stopwhile2 = true;
+                        }
+                        else
+                        {
+                            int G = Random.Range(0, HoleCount);
+                            U.GetComponent<Image>().sprite = Data.SorterList.figures.Find(X => X.ColorID == ColorID[G] && X.FormID == FormID[G]).OnShadow;
+                            U.GetComponent<FragmentScript>().ID = HoleID[G];
+                            U.GetComponent<Animator>().SetBool("Deselected", true);
+                        }
+                    }
+                }
+                break;
+
+            case 7:
+                {
+                    foreach (var F in SensFilds)
+                    {
+
+                        while (stopwhile1)
+                        {
+                            int A = Random.Range(0, 9);
+                            if (!ColorID.Contains(A))
+                            {
+                                int R = Random.Range(0, 6);
+                                F.transform.GetChild(0).GetComponent<Image>().sprite = Data.SorterList.holes.Find(X => X.ColorID == A && X.FormID == R).sprite;
+                                stopwhile1 = false;
+                                ColorID.Add(A);
+                                FormID.Add(R);
+                                HoleCount++;
+                                string Q = "" + R + A;
+                                int.TryParse(Q, out C);
+                                F.GetComponent<SensFildScript>().ID = C;
+                                HoleID.Add(C);
+                            }
+
+                        }
+                        stopwhile1 = true;
+                    }
+
+                    foreach (var U in Figures)
+                    {
+                        if (FigureID.Count < HoleCount)
+                        {
+                            while (stopwhile2)
+                            {
+                                int t = Random.Range(0, HoleCount);
+                                if (!FigureID.Contains(t))
+                                {
+                                    U.GetComponent<Image>().sprite = Data.SorterList.figures.Find(X => X.ColorID == ColorID[t] && X.FormID == FormID[t]).OnShadow;
+                                    stopwhile2 = false;
+                                    FigureID.Add(t);
+                                    U.GetComponent<FragmentScript>().ID = HoleID[t];
+                                    U.GetComponent<Animator>().SetBool("Deselected", true);
+                                }
+
+                            }
+                            stopwhile2 = true;
+                        }
+                        else
+                        {
+                            int G = Random.Range(0, HoleCount);
+                            U.GetComponent<Image>().sprite = Data.SorterList.figures.Find(X => X.ColorID == ColorID[G] && X.FormID == FormID[G]).OnShadow;
+                            U.GetComponent<FragmentScript>().ID = HoleID[G];
+                            U.GetComponent<Animator>().SetBool("Deselected", true);
+                        }
+                    }
+                }
+                break;
+
+            case 8:
+                {
+                    foreach (var F in SensFilds)
+                    {
+
+                        while (stopwhile1)
+                        {
+                            int A = Random.Range(0, 9);
+                            if (!ColorID.Contains(A))
+                            {
+                                int R = Random.Range(0, 8);
+                                F.transform.GetChild(0).GetComponent<Image>().sprite = Data.SorterList.holes.Find(X => X.ColorID == A && X.FormID == R).sprite;
+                                stopwhile1 = false;
+                                ColorID.Add(A);
+                                FormID.Add(R);
+                                HoleCount++;
+                                string Q = "" + R + A;
+                                int.TryParse(Q, out C);
+                                F.GetComponent<SensFildScript>().ID = C;
+                                HoleID.Add(C);
                             }
 
                         }
@@ -483,4 +684,6 @@ public class ControlScript : MonoBehaviour
             
         
     }
+
+    
 }
