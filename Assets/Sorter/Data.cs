@@ -1135,6 +1135,96 @@ public class Data : ScriptableObject
                     Image2 = Resources.Load<Sprite>("AnimalSound/Cow/Image2"),
                     Image3 = Resources.Load<Sprite>("AnimalSound/Cow/Image3"),
                 },
+
+                new Animal
+                {
+                    ID = 1,
+                    Name = "Sheep",
+                    Picture = Resources.Load<Sprite>("AnimalSound/Sheep/Picture"),
+                    Image1 = Resources.Load<Sprite>("AnimalSound/Sheep/Image1"),
+                    Image2 = Resources.Load<Sprite>("AnimalSound/Sheep/Image2"),
+                    Image3 = Resources.Load<Sprite>("AnimalSound/Sheep/Image3"),
+                },
+
+                new Animal
+                {
+                    ID = 2,
+                    Name = "Cat",
+                    Picture = Resources.Load<Sprite>("AnimalSound/Cat/Picture"),
+                    Image1 = Resources.Load<Sprite>("AnimalSound/Cat/Image1"),
+                    Image2 = Resources.Load<Sprite>("AnimalSound/Cat/Image2"),
+                    Image3 = Resources.Load<Sprite>("AnimalSound/Cat/Image3"),
+                },
+
+                new Animal
+                {
+                    ID = 3,
+                    Name = "Dog",
+                    Picture = Resources.Load<Sprite>("AnimalSound/Dog/Picture"),
+                    Image1 = Resources.Load<Sprite>("AnimalSound/Dog/Image1"),
+                    Image2 = Resources.Load<Sprite>("AnimalSound/Dog/Image2"),
+                    Image3 = Resources.Load<Sprite>("AnimalSound/Dog/Image3"),
+                },
+
+                new Animal
+                {
+                    ID = 4,
+                    Name = "Pig",
+                    Picture = Resources.Load<Sprite>("AnimalSound/Pig/Picture"),
+                    Image1 = Resources.Load<Sprite>("AnimalSound/Pig/Image1"),
+                    Image2 = Resources.Load<Sprite>("AnimalSound/Pig/Image2"),
+                    Image3 = Resources.Load<Sprite>("AnimalSound/Pig/Image3"),
+                },
+
+                new Animal
+                {
+                    ID = 5,
+                    Name = "Horse",
+                    Picture = Resources.Load<Sprite>("AnimalSound/Horse/Picture"),
+                    Image1 = Resources.Load<Sprite>("AnimalSound/Horse/Image1"),
+                    Image2 = Resources.Load<Sprite>("AnimalSound/Horse/Image2"),
+                    Image3 = Resources.Load<Sprite>("AnimalSound/Horse/Image3"),
+                },
+
+                new Animal
+                {
+                    ID = 6,
+                    Name = "Chicken",
+                    Picture = Resources.Load<Sprite>("AnimalSound/Chicken/Picture"),
+                    Image1 = Resources.Load<Sprite>("AnimalSound/Chicken/Image1"),
+                    Image2 = Resources.Load<Sprite>("AnimalSound/Chicken/Image2"),
+                    Image3 = Resources.Load<Sprite>("AnimalSound/Chicken/Image3"),
+                },
+
+                new Animal
+                {
+                    ID = 7,
+                    Name = "Goose",
+                    Picture = Resources.Load<Sprite>("AnimalSound/Goose/Picture"),
+                    Image1 = Resources.Load<Sprite>("AnimalSound/Goose/Image1"),
+                    Image2 = Resources.Load<Sprite>("AnimalSound/Goose/Image2"),
+                    Image3 = Resources.Load<Sprite>("AnimalSound/Goose/Image3"),
+                },
+
+                new Animal
+                {
+                    ID = 8,
+                    Name = "Rabbit",
+                    Picture = Resources.Load<Sprite>("AnimalSound/Rabbit/Picture"),
+                    Image1 = Resources.Load<Sprite>("AnimalSound/Rabbit/Image1"),
+                    Image2 = Resources.Load<Sprite>("AnimalSound/Rabbit/Image2"),
+                    Image3 = Resources.Load<Sprite>("AnimalSound/Rabbit/Image3"),
+                },
+
+                new Animal
+                {
+                    ID = 9,
+                    Name = "Turkey",
+                    Picture = Resources.Load<Sprite>("AnimalSound/Turkey/Picture"),
+                    Image1 = Resources.Load<Sprite>("AnimalSound/Turkey/Image1"),
+                    Image2 = Resources.Load<Sprite>("AnimalSound/Turkey/Image2"),
+                    Image3 = Resources.Load<Sprite>("AnimalSound/Turkey/Image3"),
+                },
             };
         }
     }

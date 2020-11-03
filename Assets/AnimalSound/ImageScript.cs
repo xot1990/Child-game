@@ -16,6 +16,7 @@ public class ImageScript : MonoBehaviour
     {
         Image = GetComponent<Image>();
         audio = GetComponent<AudioSource>();
+        Image.sprite = Resources.Load<Sprite>("AnimalSound/Default");
     }
 
    
@@ -41,6 +42,17 @@ public class ImageScript : MonoBehaviour
     public void PlaySound()
     {
         audio.PlayOneShot(Sound);
+    }
+
+    public void BackToMenu()
+    {
+        Images = null;
+        Num = 0;
+        Sound = null;
+        Image.sprite = null;
+        ControlScript.AnimalSound.SetActive(false);
+        ControlScript.MainMenu.SetActive(true);
+        Image.sprite = Resources.Load<Sprite>("AnimalSound/Default");
     }
 
 }

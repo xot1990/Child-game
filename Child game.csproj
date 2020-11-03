@@ -611,6 +611,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\AnimalSound\ImageScript.cs" />
+    <Compile Include="Assets\AnimalSound\PictureScript.cs" />
     <Compile Include="Assets\ControlScript.cs" />
     <Compile Include="Assets\Sorter\Data.cs" />
     <Compile Include="Assets\Sorter\FragmentScript.cs" />
