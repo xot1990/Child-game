@@ -30,11 +30,18 @@ public class Data : ScriptableObject
         public AudioClip Sound;
     }
 
+    public class Tile
+    {
+        public int ID;
+        public Sprite OtherSide;
+    }
+
     public static class SorterList
     {
         public static List<Figure> figures;
         public static List<Hole> holes;
         public static List<Animal> Animals;
+        public static List<Tile> Tiles;
 
         public static void Initialize()
         {
@@ -1224,6 +1231,105 @@ public class Data : ScriptableObject
                     Image1 = Resources.Load<Sprite>("AnimalSound/Turkey/Image1"),
                     Image2 = Resources.Load<Sprite>("AnimalSound/Turkey/Image2"),
                     Image3 = Resources.Load<Sprite>("AnimalSound/Turkey/Image3"),
+                },
+            };
+
+            Tiles = new List<Tile>
+            {
+                new Tile
+                {
+                    ID = 0,
+                    OtherSide = Resources.Load<Sprite>("Guessing/Cherry"),
+                },
+
+                new Tile
+                {
+                    ID = 1,
+                    OtherSide = Resources.Load<Sprite>("Guessing/Plum"),
+                },
+
+                new Tile
+                {
+                    ID = 2,
+                    OtherSide = Resources.Load<Sprite>("Guessing/Watermelon"),
+                },
+
+                new Tile
+                {
+                    ID = 3,
+                    OtherSide = Resources.Load<Sprite>("Guessing/Melon"),
+                },
+
+                new Tile
+                {
+                    ID = 4,
+                    OtherSide = Resources.Load<Sprite>("Guessing/Grapes"),
+                },
+
+                new Tile
+                {
+                    ID = 5,
+                    OtherSide = Resources.Load<Sprite>("Guessing/Plum"),
+                },
+
+                new Tile
+                {
+                    ID = 6,
+                    OtherSide = Resources.Load<Sprite>("Guessing/Plum"),
+                },
+
+                new Tile
+                {
+                    ID = 7,
+                    OtherSide = Resources.Load<Sprite>("Guessing/Plum"),
+                },
+
+                new Tile
+                {
+                    ID = 8,
+                    OtherSide = Resources.Load<Sprite>("Guessing/Plum"),
+                },
+
+                new Tile
+                {
+                    ID = 9,
+                    OtherSide = Resources.Load<Sprite>("Guessing/Plum"),
+                },
+
+                new Tile
+                {
+                    ID = 10,
+                    OtherSide = Resources.Load<Sprite>("Guessing/Plum"),
+                },
+
+                new Tile
+                {
+                    ID = 11,
+                    OtherSide = Resources.Load<Sprite>("Guessing/Plum"),
+                },
+
+                new Tile
+                {
+                    ID = 12,
+                    OtherSide = Resources.Load<Sprite>("Guessing/Plum"),
+                },
+
+                new Tile
+                {
+                    ID = 13,
+                    OtherSide = Resources.Load<Sprite>("Guessing/Plum"),
+                },
+
+                new Tile
+                {
+                    ID = 14,
+                    OtherSide = Resources.Load<Sprite>("Guessing/Plum"),
+                },
+
+                new Tile
+                {
+                    ID = 15,
+                    OtherSide = Resources.Load<Sprite>("Guessing/Plum"),
                 },
             };
         }

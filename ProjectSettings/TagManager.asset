@@ -6,6 +6,7 @@ TagManager:
   tags:
   - SensFild
   - Figure
+  - Tile
   layers:
   - Default
   - TransparentFX

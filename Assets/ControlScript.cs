@@ -15,7 +15,10 @@ public class ControlScript : MonoBehaviour
     public static int TotalTimer = 0;
     public static int Life = 6;
     public static int _Score = 0;
+    public static GameObject ActiveTile1 = null;
+    public static GameObject ActiveTile2 = null;
     
+
 
     //Ini GO
 
@@ -30,14 +33,22 @@ public class ControlScript : MonoBehaviour
     public static GameObject Score;
     public static GameObject[] SensFilds;
     public static GameObject[] Figures;
+    public static GameObject[] Tiles;
+    public static GameObject[] ActiveTile;
 
     public static GameObject AnimalSound;
     public static GameObject AnimalImage;
+
+    public static GameObject Guessing;
+    public static GameObject GuessingContent;
+    public static GameObject GuessingMenuNextLvL;
+    public static GameObject GuessingMenuGameOver;
 
 
     // GameLvL
 
     public static int SorterLvL = 1;
+    public static int GuessingLvL = 2;
 
     // Audio
 
@@ -86,13 +97,26 @@ public class ControlScript : MonoBehaviour
         MainMenu = GameObject.Find("MainMenu");
         AnimalSound = GameObject.Find("AnimalSound");
         AnimalImage = GameObject.Find("AnimalImage");
+        Tiles = GameObject.FindGameObjectsWithTag("Tile");
+        Guessing = GameObject.Find("Guessing");
+        GuessingContent = GameObject.Find("Tiles");
+        GuessingMenuNextLvL = GameObject.Find("MenuNextLvLFrut");
+        GuessingMenuGameOver = GameObject.Find("MenuGameOverFrut");
+
 
         // Off Go
 
         Sorter.SetActive(false);
         SorterMenuNextLvL.SetActive(false);
         SorterMenuGameOver.SetActive(false);
+        GuessingMenuNextLvL.SetActive(false);
+        GuessingMenuGameOver.SetActive(false);
         AnimalSound.SetActive(false);
+        foreach(var T in Tiles)
+        {
+            T.SetActive(false);
+        }
+        Guessing.SetActive(false);
     }
 
     public void NextLvl()
@@ -685,5 +709,135 @@ public class ControlScript : MonoBehaviour
         
     }
 
-    
+    public void IniGuessing()
+    {
+        GuessingContent.GetComponent<GridLayoutGroup>().enabled = true;
+        WinTimer = GuessingLvL;
+
+        List<int> Items = new List<int>();
+        List<int> Nums = new List<int>();
+        int M = 0;
+        int R = 0;
+        int Y = 0;
+
+        Items.Add(M);
+
+        for (int i = 0; 2 * GuessingLvL > i; i++)
+        {
+            Tiles[i].SetActive(true);
+        }
+
+        ActiveTile = GameObject.FindGameObjectsWithTag("Tile");
+
+        for (int i = 0; ActiveTile.Length > i; i++)
+        {     
+            
+            if (R == 2)
+            {
+                while(true)
+                {
+                    M = Random.Range(0, 2);
+                    if (!Items.Contains(M))
+                    {                        
+                        Items.Add(M);
+                        break;
+                    }
+                    
+                }
+               
+            }
+
+            while (true)
+            {
+                Y = Random.Range(0, ActiveTile.Length);
+                if(!Nums.Contains(Y))
+                {
+                    Nums.Add(Y);
+                    break;
+                }
+            }
+            ActiveTile[Y].GetComponent<TileScript>().OtherSide = Data.SorterList.Tiles.Find(X => X.ID == M).OtherSide;
+            ActiveTile[Y].GetComponent<TileScript>().ID = M;
+
+            R++;
+        }
+
+        GuessingContent.GetComponent<GridLayoutGroup>().enabled = false;
+    }
+
+    public static void ActiveGuessing()
+    {
+        if (ActiveTile2 != null && ActiveTile1 != null && ActiveTile1.GetComponent<TileScript>().ID == ActiveTile2.GetComponent<TileScript>().ID)
+        {
+            ActiveTile1.GetComponent<Animator>().SetBool("Done", true);
+            ActiveTile2.GetComponent<Animator>().SetBool("Done", true);
+            ActiveTile1 = null;
+            ActiveTile2 = null;
+            TotalTimer++;
+
+            if(TotalTimer == WinTimer)
+            {
+                GuessingMenuNextLvL.SetActive(true);
+            }
+        }
+        else if(ActiveTile2 != null && ActiveTile1 != null && ActiveTile1.GetComponent<TileScript>().ID != ActiveTile2.GetComponent<TileScript>().ID)
+        {
+            ActiveTile1.GetComponent<Animator>().SetBool("Pressed", true);
+            ActiveTile2.GetComponent<Animator>().SetBool("Pressed", true);
+            ActiveTile1 = null;
+            ActiveTile2 = null;
+        }
+
+    }
+
+    public void GuessingNextLvL()
+    {
+        GuessingLvL++;
+        TotalTimer = 0;
+        WinTimer = GuessingLvL;
+        IniGuessing();
+    }
+
+    public void GuessingReset()
+    {
+        foreach(var T in Tiles)
+        {
+            T.GetComponent<Image>().sprite = T.GetComponent<TileScript>().Default;
+            T.SetActive(false);
+        }
+
+        TotalTimer = 0;
+        WinTimer = GuessingLvL;
+        IniGuessing();
+    }
+
+    public void GuessingNewGame()
+    {
+        foreach (var T in Tiles)
+        {
+            T.GetComponent<Image>().sprite = T.GetComponent<TileScript>().Default;
+            T.SetActive(false);
+        }
+
+        GuessingLvL = 1;
+        TotalTimer = 0;
+        WinTimer = GuessingLvL;
+        IniGuessing();
+    }
+
+    public void GuessingBackToMenu()
+    {
+        foreach (var T in Tiles)
+        {
+            T.GetComponent<Image>().sprite = T.GetComponent<TileScript>().Default;
+            T.SetActive(false);
+        }
+
+        GuessingLvL = 1;
+        TotalTimer = 0;
+
+        Guessing.SetActive(false);
+        MainMenu.SetActive(true);
+    }
+
 }
