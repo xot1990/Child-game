@@ -1269,67 +1269,73 @@ public class Data : ScriptableObject
                 new Tile
                 {
                     ID = 5,
-                    OtherSide = Resources.Load<Sprite>("Guessing/Plum"),
+                    OtherSide = Resources.Load<Sprite>("Guessing/Orange"),
                 },
 
                 new Tile
                 {
                     ID = 6,
-                    OtherSide = Resources.Load<Sprite>("Guessing/Plum"),
+                    OtherSide = Resources.Load<Sprite>("Guessing/Lemon"),
                 },
 
                 new Tile
                 {
                     ID = 7,
-                    OtherSide = Resources.Load<Sprite>("Guessing/Plum"),
+                    OtherSide = Resources.Load<Sprite>("Guessing/Appel"),
                 },
 
                 new Tile
                 {
                     ID = 8,
-                    OtherSide = Resources.Load<Sprite>("Guessing/Plum"),
+                    OtherSide = Resources.Load<Sprite>("Guessing/Pear"),
                 },
 
                 new Tile
                 {
                     ID = 9,
-                    OtherSide = Resources.Load<Sprite>("Guessing/Plum"),
+                    OtherSide = Resources.Load<Sprite>("Guessing/Beet"),
                 },
 
                 new Tile
                 {
                     ID = 10,
-                    OtherSide = Resources.Load<Sprite>("Guessing/Plum"),
+                    OtherSide = Resources.Load<Sprite>("Guessing/Cabbage"),
                 },
 
                 new Tile
                 {
                     ID = 11,
-                    OtherSide = Resources.Load<Sprite>("Guessing/Plum"),
+                    OtherSide = Resources.Load<Sprite>("Guessing/Carrot"),
                 },
 
                 new Tile
                 {
                     ID = 12,
-                    OtherSide = Resources.Load<Sprite>("Guessing/Plum"),
+                    OtherSide = Resources.Load<Sprite>("Guessing/Cucumber"),
                 },
 
                 new Tile
                 {
                     ID = 13,
-                    OtherSide = Resources.Load<Sprite>("Guessing/Plum"),
+                    OtherSide = Resources.Load<Sprite>("Guessing/Eggplant"),
                 },
 
                 new Tile
                 {
                     ID = 14,
-                    OtherSide = Resources.Load<Sprite>("Guessing/Plum"),
+                    OtherSide = Resources.Load<Sprite>("Guessing/Pepper"),
                 },
 
                 new Tile
                 {
                     ID = 15,
-                    OtherSide = Resources.Load<Sprite>("Guessing/Plum"),
+                    OtherSide = Resources.Load<Sprite>("Guessing/Tomato"),
+                },
+
+                new Tile
+                {
+                    ID = 16,
+                    OtherSide = Resources.Load<Sprite>("Guessing/Radish"),
                 },
             };
         }

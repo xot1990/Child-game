@@ -30,12 +30,12 @@ public class TileScript : MonoBehaviour
 
     public void ActiveTile()
     {
-        if (ControlScript.ActiveTile1 == null)
+        if (ControlScript.ActiveTile1 == null && ControlScript.ActiveTile2 == null)
         {
             ControlScript.ActiveTile1 = gameObject;
             return;
         }
-        if (ControlScript.ActiveTile2 == null)
+        if (ControlScript.ActiveTile2 == null && gameObject != ControlScript.ActiveTile1)
         {
             ControlScript.ActiveTile2 = gameObject;
             return;
@@ -48,8 +48,27 @@ public class TileScript : MonoBehaviour
         gameObject.SetActive(false);
     }
 
+    public void Pressed()
+    {
+        Debug.Log(ControlScript.ActiveTile1);
+        Debug.Log(ControlScript.ActiveTile2);
+        GetComponent<Animator>().SetBool("Pressed", true);
+    }
+
     public void Check()
     {
-        ControlScript.ActiveGuessing();
+        ControlScript.Self.GetComponent<ControlScript>().ActiveGuessing();        
+    }
+
+    public void ToNormal()
+    {
+        GetComponent<Animator>().SetBool("Back", false);
+        
+    }
+
+    public void ToNormalOnPressed()
+    {
+        GetComponent<Animator>().SetBool("Pressed", false);
+
     }
 }

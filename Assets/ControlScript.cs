@@ -17,11 +17,12 @@ public class ControlScript : MonoBehaviour
     public static int _Score = 0;
     public static GameObject ActiveTile1 = null;
     public static GameObject ActiveTile2 = null;
-    
+
 
 
     //Ini GO
 
+    public static GameObject Self;
     public static GameObject MainMenu;
     public static GameObject SorterLifes;
     public static GameObject Sorter;
@@ -102,7 +103,7 @@ public class ControlScript : MonoBehaviour
         GuessingContent = GameObject.Find("Tiles");
         GuessingMenuNextLvL = GameObject.Find("MenuNextLvLFrut");
         GuessingMenuGameOver = GameObject.Find("MenuGameOverFrut");
-
+        Self = gameObject;
 
         // Off Go
 
@@ -736,10 +737,11 @@ public class ControlScript : MonoBehaviour
             {
                 while(true)
                 {
-                    M = Random.Range(0, 2);
+                    M = Random.Range(0, 17);
                     if (!Items.Contains(M))
                     {                        
                         Items.Add(M);
+                        R = 0;
                         break;
                     }
                     
@@ -761,11 +763,11 @@ public class ControlScript : MonoBehaviour
 
             R++;
         }
-
+        
         GuessingContent.GetComponent<GridLayoutGroup>().enabled = false;
     }
 
-    public static void ActiveGuessing()
+    public void ActiveGuessing()
     {
         if (ActiveTile2 != null && ActiveTile1 != null && ActiveTile1.GetComponent<TileScript>().ID == ActiveTile2.GetComponent<TileScript>().ID)
         {
@@ -777,22 +779,30 @@ public class ControlScript : MonoBehaviour
 
             if(TotalTimer == WinTimer)
             {
-                GuessingMenuNextLvL.SetActive(true);
+                StartCoroutine(NextLvL());
             }
         }
         else if(ActiveTile2 != null && ActiveTile1 != null && ActiveTile1.GetComponent<TileScript>().ID != ActiveTile2.GetComponent<TileScript>().ID)
         {
-            ActiveTile1.GetComponent<Animator>().SetBool("Pressed", true);
-            ActiveTile2.GetComponent<Animator>().SetBool("Pressed", true);
+            ActiveTile1.GetComponent<Animator>().SetBool("Back", true);
+            ActiveTile2.GetComponent<Animator>().SetBool("Back", true);
             ActiveTile1 = null;
             ActiveTile2 = null;
+            
         }
 
     }
 
     public void GuessingNextLvL()
     {
-        GuessingLvL++;
+        
+        foreach (var T in Tiles)
+        {
+            T.GetComponent<Image>().sprite = T.GetComponent<TileScript>().Default;
+            T.SetActive(false);
+            T.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
+        }
+        if (GuessingLvL <= 15) GuessingLvL++;
         TotalTimer = 0;
         WinTimer = GuessingLvL;
         IniGuessing();
@@ -804,6 +814,7 @@ public class ControlScript : MonoBehaviour
         {
             T.GetComponent<Image>().sprite = T.GetComponent<TileScript>().Default;
             T.SetActive(false);
+            T.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
         }
 
         TotalTimer = 0;
@@ -817,6 +828,7 @@ public class ControlScript : MonoBehaviour
         {
             T.GetComponent<Image>().sprite = T.GetComponent<TileScript>().Default;
             T.SetActive(false);
+            T.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
         }
 
         GuessingLvL = 1;
@@ -831,6 +843,7 @@ public class ControlScript : MonoBehaviour
         {
             T.GetComponent<Image>().sprite = T.GetComponent<TileScript>().Default;
             T.SetActive(false);
+            T.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
         }
 
         GuessingLvL = 1;
@@ -840,4 +853,10 @@ public class ControlScript : MonoBehaviour
         MainMenu.SetActive(true);
     }
 
+    public IEnumerator NextLvL()
+    {
+        yield return new WaitForSeconds(2.5f);
+        GuessingMenuNextLvL.SetActive(true);
+        
+    }
 }
