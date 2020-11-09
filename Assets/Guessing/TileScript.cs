@@ -49,9 +49,7 @@ public class TileScript : MonoBehaviour
     }
 
     public void Pressed()
-    {
-        Debug.Log(ControlScript.ActiveTile1);
-        Debug.Log(ControlScript.ActiveTile2);
+    {        
         GetComponent<Animator>().SetBool("Pressed", true);
     }
 
@@ -63,12 +61,28 @@ public class TileScript : MonoBehaviour
     public void ToNormal()
     {
         GetComponent<Animator>().SetBool("Back", false);
-        
     }
 
     public void ToNormalOnPressed()
     {
         GetComponent<Animator>().SetBool("Pressed", false);
+    }
 
+    public void StopStarter()
+    {
+        GetComponent<Animator>().SetBool("Starter", false);
+        Debug.Log("1");
+    }
+
+    public void StopEnder()
+    {
+        GetComponent<Animator>().SetBool("Ender", false);
+        GetComponent<Button>().interactable = true;
+    }
+
+    public IEnumerator Ender()
+    {
+        yield return new WaitForSeconds(2);
+        GetComponent<Animator>().SetBool("Ender", true);
     }
 }

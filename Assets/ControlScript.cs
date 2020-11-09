@@ -24,14 +24,14 @@ public class ControlScript : MonoBehaviour
 
     public static GameObject Self;
     public static GameObject MainMenu;
-    public static GameObject SorterLifes;
+    
     public static GameObject Sorter;
     public static GameObject SorterBack;
     public static GameObject SorterLenar;
     public static GameObject SorterFigures;
     public static GameObject SorterMenuNextLvL;
     public static GameObject SorterMenuGameOver;
-    public static GameObject Score;
+    
     public static GameObject[] SensFilds;
     public static GameObject[] Figures;
     public static GameObject[] Tiles;
@@ -85,14 +85,12 @@ public class ControlScript : MonoBehaviour
 
     public void Ini()
     {
-        Sorter = GameObject.Find("Sorter");
-        SorterLifes = GameObject.Find("Lifes");
+        Sorter = GameObject.Find("Sorter");        
         SorterBack = GameObject.Find("BackGround");
         SorterLenar = GameObject.Find("Lenar");
         SorterFigures = GameObject.Find("Figures");
         SorterMenuNextLvL = GameObject.Find("MenuNextLvL");
-        SorterMenuGameOver = GameObject.Find("MenuGameOver");
-        Score = GameObject.Find("Score");
+        SorterMenuGameOver = GameObject.Find("MenuGameOver");       
         SensFilds = GameObject.FindGameObjectsWithTag("SensFild");
         Figures = GameObject.FindGameObjectsWithTag("Figure");
         MainMenu = GameObject.Find("MainMenu");
@@ -103,19 +101,20 @@ public class ControlScript : MonoBehaviour
         GuessingContent = GameObject.Find("Tiles");
         GuessingMenuNextLvL = GameObject.Find("MenuNextLvLFrut");
         GuessingMenuGameOver = GameObject.Find("MenuGameOverFrut");
+        
         Self = gameObject;
 
         // Off Go
-
+        
         Sorter.SetActive(false);
         SorterMenuNextLvL.SetActive(false);
         SorterMenuGameOver.SetActive(false);
         GuessingMenuNextLvL.SetActive(false);
         GuessingMenuGameOver.SetActive(false);
         AnimalSound.SetActive(false);
-        foreach(var T in Tiles)
+        foreach(var Te in Tiles)
         {
-            T.SetActive(false);
+            Te.SetActive(false);
         }
         Guessing.SetActive(false);
     }
@@ -189,14 +188,7 @@ public class ControlScript : MonoBehaviour
         }
         TotalTimer = 0;
         SorterLvL = 1;
-
-        for (int i = 0; SorterLifes.transform.childCount > i; i++)
-        {
-            SorterLifes.transform.GetChild(i).gameObject.SetActive(true);
-        }
-
-        Life = 6;
-
+        
         SorterMenuNextLvL.SetActive(false);
         SorterMenuGameOver.SetActive(false);
         IniSorter();
@@ -216,14 +208,7 @@ public class ControlScript : MonoBehaviour
         }
         TotalTimer = 0;
         SorterLvL = 1;
-
-        for(int i =0; SorterLifes.transform.childCount - 1 > i; i++)
-        {
-            SorterLifes.transform.GetChild(i).gameObject.SetActive(true);
-        }
-
-        Life = 6;
-
+        
         SorterMenuNextLvL.SetActive(false);
         SorterMenuGameOver.SetActive(false);
         Sorter.SetActive(false);
@@ -726,6 +711,7 @@ public class ControlScript : MonoBehaviour
         for (int i = 0; 2 * GuessingLvL > i; i++)
         {
             Tiles[i].SetActive(true);
+            Tiles[i].GetComponent<Animator>().SetBool("Starter", true);
         }
 
         ActiveTile = GameObject.FindGameObjectsWithTag("Tile");
@@ -772,7 +758,9 @@ public class ControlScript : MonoBehaviour
         if (ActiveTile2 != null && ActiveTile1 != null && ActiveTile1.GetComponent<TileScript>().ID == ActiveTile2.GetComponent<TileScript>().ID)
         {
             ActiveTile1.GetComponent<Animator>().SetBool("Done", true);
+            ActiveTile1.GetComponent<Button>().interactable = false;
             ActiveTile2.GetComponent<Animator>().SetBool("Done", true);
+            ActiveTile2.GetComponent<Button>().interactable = false;
             ActiveTile1 = null;
             ActiveTile2 = null;
             TotalTimer++;
@@ -855,7 +843,7 @@ public class ControlScript : MonoBehaviour
 
     public IEnumerator NextLvL()
     {
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(2.0f);
         GuessingMenuNextLvL.SetActive(true);
         
     }

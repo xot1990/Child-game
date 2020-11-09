@@ -77,31 +77,27 @@ public class FragmentScript : MonoBehaviour
             transform.position = ControlScript.Field.transform.position;
             transform.parent = Back.transform;
             anim.SetBool("Done", true);
-            audio.PlayOneShot(Right);
-            ControlScript.TotalTimer++;
-            ControlScript._Score += 5 * (int)Mathf.Pow(ControlScript.SorterLvL,2);            
-            ControlScript.Score.GetComponent<Text>().text = "" + ControlScript._Score;            
+            //audio.PlayOneShot(Right);
+            ControlScript.TotalTimer++;                      
             if (ControlScript.TotalTimer >= ControlScript.WinTimer) ControlScript.SorterMenuNextLvL.SetActive(true);
            
         }
         else
         {
             anim.SetBool("Deselected", true);
-            audio.PlayOneShot(Wrong);
+            //audio.PlayOneShot(Wrong);
             if (transform.position.x < Back.transform.position.x)
             {
                 BackOnPos = true;
-                if (ControlScript.SorterLvL > 2)
-                {
-                    ControlScript.Life--;
-                    ControlScript.SorterLifes.transform.GetChild(ControlScript.Life).gameObject.SetActive(false);
-                    if (ControlScript.Life == 0) ControlScript.SorterMenuGameOver.SetActive(true);
-                }
+                
             }
             else StartPos = transform.position;
             GetComponent<Image>().raycastTarget = true;
             ControlScript.SelectedFragment = -1;
-        }        
+        }
+
+        
+        
     }
 
     public void DelGO()
