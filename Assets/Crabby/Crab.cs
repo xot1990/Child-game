@@ -39,7 +39,7 @@ public class Crab : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (transform.position.x > collision.transform.position.x) collision.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(-1, 1) * 250);
-        if (transform.position.x < collision.transform.position.x) collision.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(1, 1) * 250);
+        if (transform.position.x > collision.transform.position.x) collision.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(-1, 1) * 200);
+        if (transform.position.x < collision.transform.position.x) collision.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(1, 1) * 200);
     }
 }

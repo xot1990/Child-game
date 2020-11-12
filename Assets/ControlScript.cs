@@ -51,6 +51,9 @@ public class ControlScript : MonoBehaviour
     public static GameObject LeftRule;
     public static GameObject RightRule;
     public static GameObject EmptyFigure;
+    public static Text LvLCount;
+    public static GameObject MenuCrab1;
+    public static GameObject MenuCrab2;
     
 
     // GameLvL
@@ -117,6 +120,9 @@ public class ControlScript : MonoBehaviour
         LeftRule = GameObject.Find("LeftRule");
         RightRule = GameObject.Find("RightRule");
         EmptyFigure = Resources.Load<GameObject>("Crabby/EmptyFigure");
+        LvLCount = GameObject.Find("LvLCount").GetComponent<Text>();
+        MenuCrab1 = GameObject.Find("MenuCrab1");
+        MenuCrab2 = GameObject.Find("MenuCrab2");
         Self = gameObject;
 
         // Off Go
@@ -127,6 +133,8 @@ public class ControlScript : MonoBehaviour
         GuessingMenuNextLvL.SetActive(false);
         GuessingMenuGameOver.SetActive(false);
         AnimalSound.SetActive(false);
+        MenuCrab1.SetActive(false);
+        MenuCrab2.SetActive(false);
         Crabby.SetActive(false);
 
         foreach(var Te in Tiles)
@@ -134,6 +142,14 @@ public class ControlScript : MonoBehaviour
             Te.SetActive(false);
         }
         Guessing.SetActive(false);
+
+        for (int i = 0; i < 8; i++)
+        {
+            LeftRule.transform.GetChild(i).gameObject.SetActive(false);
+            RightRule.transform.GetChild(i).gameObject.SetActive(false);
+        }
+
+        
     }
 
     public void NextLvl()
@@ -860,33 +876,114 @@ public class ControlScript : MonoBehaviour
 
     public void IniCrabby()
     {
+        StopAllCoroutines();
+        EmptyFigure.GetComponent<Rigidbody2D>().gravityScale = 0.3f + CrabbyLvL * 0.05f;
         TotalTimer = 0;
         WinTimer = CrabbyLvL * 5;
+        LvLCount.text = "" + WinTimer;
 
-        rules = new List<RuleImage>
+        List<int> Num = new List<int>();
+        
+
+        rules = new List<RuleImage>();
+
+        for (int i = 0; CrabbyLvL * 2 > i; i++)
         {
-            new RuleImage
+            int A;
+            int B;
+            int C;
+
+            while(true)
             {
-                ColorRule = Random.Range(0, 8),
-                FormRule = Random.Range(0, 8),
-            },
+                A = Random.Range(0, 8);
+                B = Random.Range(0, 8);
 
-            new RuleImage
-            {
-                ColorRule = Random.Range(0, 8),
-                FormRule = Random.Range(0, 8),
-            },
-        };
+                string Q = "" + A + B;
+                int.TryParse(Q, out C);
 
-        LeftRule.GetComponent<RuleScript>().ColorRule = rules[0].ColorRule;
-        LeftRule.GetComponent<RuleScript>().FormRule = rules[0].FormRule;
-        LeftRule.GetComponent<Image>().sprite = Data.SorterList.figures.Find(X => X.ColorID == rules[0].ColorRule && X.FormID == rules[0].FormRule).sprite;
-        RightRule.GetComponent<RuleScript>().ColorRule = rules[1].ColorRule;
-        RightRule.GetComponent<RuleScript>().FormRule = rules[1].FormRule;
-        RightRule.GetComponent<Image>().sprite = Data.SorterList.figures.Find(X => X.ColorID == rules[1].ColorRule && X.FormID == rules[1].FormRule).sprite;
+                if (!Num.Contains(C))
+                {
+                    Num.Add(C);
+                    break;
+                }
+            }
 
+            rules.Add(
+                new RuleImage
+                {
+                    ColorRule = A,
+                    FormRule = B,
+                });
+        }
+
+        for (int i = 0; CrabbyLvL > i; i++)
+        {
+            LeftRule.transform.GetChild(i).gameObject.SetActive(true);
+            RightRule.transform.GetChild(i).gameObject.SetActive(true);
+            LeftRule.transform.GetChild(i).GetComponent<Image>().sprite = Data.SorterList.figures.Find(X => X.ColorID == rules[i].ColorRule && X.FormID == rules[i].FormRule).sprite;
+            RightRule.transform.GetChild(i).GetComponent<Image>().sprite = Data.SorterList.figures.Find(X => X.ColorID == rules[i + CrabbyLvL].ColorRule && X.FormID == rules[i + CrabbyLvL].FormRule).sprite;
+        }
 
         StartCoroutine(SpawnFigure());
+    }
+
+    public void CrabbyNextLvL()
+    {
+        CrabbyLvL++;
+
+        GameObject[] Fig = GameObject.FindGameObjectsWithTag("EmptyFigure");
+
+        foreach(var F in Fig)
+        {
+            Destroy(F);
+        }
+
+        for(int i = 0; i < 8; i++)
+        {
+            LeftRule.transform.GetChild(i).gameObject.SetActive(false);
+            RightRule.transform.GetChild(i).gameObject.SetActive(false);
+        }
+
+        IniCrabby();
+    }
+
+    public void CrabbyResetLvL()
+    {  
+        GameObject[] Fig = GameObject.FindGameObjectsWithTag("EmptyFigure");
+
+        foreach (var F in Fig)
+        {
+            Destroy(F);
+        }
+
+        for (int i = 0; i < 8; i++)
+        {
+            LeftRule.transform.GetChild(i).gameObject.SetActive(false);
+            RightRule.transform.GetChild(i).gameObject.SetActive(false);
+        }
+
+        IniCrabby();
+    }
+
+    public void CrabbyBackToMenu()
+    {
+        CrabbyLvL = 1;
+
+        GameObject[] Fig = GameObject.FindGameObjectsWithTag("EmptyFigure");
+
+        foreach (var F in Fig)
+        {
+            Destroy(F);
+        }
+
+        for (int i = 0; i < 8; i++)
+        {
+            LeftRule.transform.GetChild(i).gameObject.SetActive(false);
+            RightRule.transform.GetChild(i).gameObject.SetActive(false);
+        }
+
+        Crabby.SetActive(false);
+        MainMenu.SetActive(true);
     }
 
     public IEnumerator NextLvL()
@@ -901,8 +998,8 @@ public class ControlScript : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(2);
-            int Rule = Random.Range(0, 2);
-            GameObject Figure = Instantiate(EmptyFigure, new Vector3(Random.Range(-3f, 2.5f), 4, -1), Quaternion.identity, Crabby.transform);            
+            int Rule = Random.Range(0, CrabbyLvL*2);
+            GameObject Figure = Instantiate(EmptyFigure, new Vector3(Random.Range(-3f, 2.5f), 6, -1), Quaternion.identity, Crabby.transform);            
             Figure.GetComponent<SpriteRenderer>().sprite = Data.SorterList.figures.Find(X => X.ColorID == rules[Rule].ColorRule && X.FormID == rules[Rule].FormRule).sprite;
             Figure.GetComponent<EmptyFigureScript>().FormID = rules[Rule].FormRule;
             Figure.GetComponent<EmptyFigureScript>().ColorID = rules[Rule].ColorRule;
@@ -910,6 +1007,7 @@ public class ControlScript : MonoBehaviour
             Figure.AddComponent<PolygonCollider2D>();
             if (TotalTimer >= WinTimer) break;
         }
+        yield break;
     }
 
     public class RuleImage

@@ -6,24 +6,70 @@ public class EmptyFigureScript : MonoBehaviour
 {
     public int ColorID;
     public int FormID;
-    
-    void Start()
-    {
-        
-    }
-
-    
-    void Update()
-    {
-        
-    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        bool Done = false;
+
         if (collision.gameObject.name == "LvL" && transform.position.y < -1f && transform.position.x < ControlScript.Crab.transform.position.x)
         {
-            if (ControlScript.LeftRule.GetComponent<RuleScript>().ColorRule == ColorID && ControlScript.LeftRule.GetComponent<RuleScript>().FormRule == FormID) ControlScript.TotalTimer++;
+            for(int i = 0; ControlScript.CrabbyLvL > i; i++)
+            {
+                if (ControlScript.rules[i] != null && ControlScript.rules[i].ColorRule == ColorID && ControlScript.rules[i].FormRule == FormID)
+                {
+                    ControlScript.WinTimer--;
+                    Done = true;
+                    break;
+                }
+            }
+            if (!Done) ControlScript.WinTimer++;
+            ControlScript.LvLCount.text = "" + ControlScript.WinTimer;
+            if (ControlScript.WinTimer <= ControlScript.TotalTimer)
+            {
+                ControlScript.MenuCrab1.SetActive(true);
+                StopAllCoroutines();
+                Time.timeScale = 0;
+                
+            }
+            Destroy(gameObject);
+        }               
+
+        if (collision.gameObject.name == "LvL" && transform.position.y < -1f && transform.position.x > ControlScript.Crab.transform.position.x)
+        {
+            for (int i = 0; ControlScript.CrabbyLvL > i; i++)
+            {
+                if (ControlScript.rules[i + ControlScript.CrabbyLvL] != null && ControlScript.rules[i + ControlScript.CrabbyLvL].ColorRule == ColorID && ControlScript.rules[i + ControlScript.CrabbyLvL].FormRule == FormID)
+                {
+                    ControlScript.WinTimer--;
+                    Done = true;
+                    break;
+                }
+            }
+            if (!Done) ControlScript.WinTimer++;
+            ControlScript.LvLCount.text = "" + ControlScript.WinTimer;
+            if (ControlScript.WinTimer <= ControlScript.TotalTimer)
+            {
+                ControlScript.MenuCrab1.SetActive(true);
+                StopAllCoroutines();
+                Time.timeScale = 0;
+
+                
+            }
             Destroy(gameObject);
         }
+
+        if (collision.gameObject.name == "LvL" && transform.position.y > -1f && transform.position.x > -3.5f && transform.position.x < 3.2f)
+        {
+            ControlScript.WinTimer++;
+            ControlScript.LvLCount.text = "" + ControlScript.WinTimer;
+            Destroy(gameObject);
+        }
+
+    }
+
+    public IEnumerator DestroyGO()
+    {
+        yield return new WaitForSeconds(5);
+        Destroy(gameObject);
     }
 }
