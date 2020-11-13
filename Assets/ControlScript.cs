@@ -54,6 +54,7 @@ public class ControlScript : MonoBehaviour
     public static Text LvLCount;
     public static GameObject MenuCrab1;
     public static GameObject MenuCrab2;
+    public static GameObject RotationButton;
     
 
     // GameLvL
@@ -123,6 +124,7 @@ public class ControlScript : MonoBehaviour
         LvLCount = GameObject.Find("LvLCount").GetComponent<Text>();
         MenuCrab1 = GameObject.Find("MenuCrab1");
         MenuCrab2 = GameObject.Find("MenuCrab2");
+        RotationButton = GameObject.Find("RotationButton");
         Self = gameObject;
 
         // Off Go
@@ -135,6 +137,7 @@ public class ControlScript : MonoBehaviour
         AnimalSound.SetActive(false);
         MenuCrab1.SetActive(false);
         MenuCrab2.SetActive(false);
+        RotationButton.SetActive(false);
         Crabby.SetActive(false);
 
         foreach(var Te in Tiles)
@@ -876,6 +879,7 @@ public class ControlScript : MonoBehaviour
 
     public void IniCrabby()
     {
+        Time.timeScale = 1;
         StopAllCoroutines();
         EmptyFigure.GetComponent<Rigidbody2D>().gravityScale = 0.3f + CrabbyLvL * 0.05f;
         TotalTimer = 0;
@@ -929,7 +933,8 @@ public class ControlScript : MonoBehaviour
 
     public void CrabbyNextLvL()
     {
-        CrabbyLvL++;
+        Time.timeScale = 1;
+        if (CrabbyLvL < 9) CrabbyLvL++;
 
         GameObject[] Fig = GameObject.FindGameObjectsWithTag("EmptyFigure");
 
@@ -948,7 +953,8 @@ public class ControlScript : MonoBehaviour
     }
 
     public void CrabbyResetLvL()
-    {  
+    {
+        Time.timeScale = 1;
         GameObject[] Fig = GameObject.FindGameObjectsWithTag("EmptyFigure");
 
         foreach (var F in Fig)
@@ -1014,5 +1020,10 @@ public class ControlScript : MonoBehaviour
     {
         public int FormRule;
         public int ColorRule;
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
     }
 }

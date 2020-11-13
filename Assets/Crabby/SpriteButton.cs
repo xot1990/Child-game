@@ -11,8 +11,7 @@ public class SpriteButton : MonoBehaviour
         {
             case "MenuCrabNext":
                 {
-                    ControlScript.MenuCrab1.SetActive(false);
-                    Time.timeScale = 1;
+                    ControlScript.MenuCrab1.SetActive(false);                    
                     ControlScript.Self.GetComponent<ControlScript>().CrabbyNextLvL();
                 }
                 break;
@@ -20,7 +19,6 @@ public class SpriteButton : MonoBehaviour
                 {
                     ControlScript.MenuCrab1.SetActive(false);
                     ControlScript.MenuCrab2.SetActive(false);
-                    Time.timeScale = 1;
                     ControlScript.Self.GetComponent<ControlScript>().CrabbyResetLvL();
                 }
                 break;
@@ -35,6 +33,32 @@ public class SpriteButton : MonoBehaviour
                 {
                     Time.timeScale = 0;
                     ControlScript.MenuCrab2.SetActive(true);
+                }
+                break;
+            case "RotationButton":
+                {
+                    ControlScript.Crab.GetComponent<Crab>().Rotation = true;
+                }
+                break;
+           
+        }
+    }
+
+    private void OnMouseDrag()
+    {
+        switch (gameObject.name)
+        {
+            
+            case "LeftStep":
+                {
+                    ControlScript.Crab.gameObject.transform.Translate(Vector2.left * Crab.speed * Time.deltaTime);
+                    
+                }
+                break;
+            case "RightStep":
+                {
+                    ControlScript.Crab.gameObject.transform.Translate(Vector2.right * Crab.speed * Time.deltaTime);
+                    
                 }
                 break;
         }

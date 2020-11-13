@@ -71,7 +71,7 @@ public class TileScript : MonoBehaviour
     public void StopStarter()
     {
         GetComponent<Animator>().SetBool("Starter", false);
-        Debug.Log("1");
+        
     }
 
     public void StopEnder()

@@ -614,6 +614,9 @@
     <Compile Include="Assets\AnimalSound\ImageScript.cs" />
     <Compile Include="Assets\AnimalSound\PictureScript.cs" />
     <Compile Include="Assets\ControlScript.cs" />
+    <Compile Include="Assets\Crabby\Crab.cs" />
+    <Compile Include="Assets\Crabby\EmptyFigureScript.cs" />
+    <Compile Include="Assets\Crabby\SpriteButton.cs" />
     <Compile Include="Assets\Guessing\TileScript.cs" />
     <Compile Include="Assets\Sorter\Data.cs" />
     <Compile Include="Assets\Sorter\FragmentScript.cs" />
