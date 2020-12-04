@@ -8,6 +8,7 @@ TagManager:
   - Figure
   - Tile
   - EmptyFigure
+  - LvL
   layers:
   - Default
   - TransparentFX

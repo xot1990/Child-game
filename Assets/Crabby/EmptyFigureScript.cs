@@ -6,7 +6,22 @@ public class EmptyFigureScript : MonoBehaviour
 {
     public int ColorID;
     public int FormID;
+    public GameObject Crab;
+    bool _Done = false;
 
+    private void Start()
+    {
+        Crab = GameObject.Find("Crab");
+    }
+    private void FixedUpdate()
+    {
+        if (transform.position.y - Crab.transform.position.y < 2f && !_Done)
+        {
+            Crab.GetComponent<Crab>().FigureContact = true;
+            Crab.GetComponent<Crab>().ContactFigure = gameObject;
+            _Done = true;
+        }
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         bool Done = false;
@@ -26,10 +41,9 @@ public class EmptyFigureScript : MonoBehaviour
             ControlScript.LvLCount.text = "" + ControlScript.WinTimer;
             if (ControlScript.WinTimer <= ControlScript.TotalTimer)
             {
+                Crab.GetComponent<Crab>().Anim.SetBool("Victory", true);
                 ControlScript.MenuCrab1.SetActive(true);
-                StopAllCoroutines();
                 Time.timeScale = 0;
-                
             }
             Destroy(gameObject);
         }               
@@ -49,11 +63,9 @@ public class EmptyFigureScript : MonoBehaviour
             ControlScript.LvLCount.text = "" + ControlScript.WinTimer;
             if (ControlScript.WinTimer <= ControlScript.TotalTimer)
             {
+                Crab.GetComponent<Crab>().Anim.SetBool("Victory", true);               
                 ControlScript.MenuCrab1.SetActive(true);
-                StopAllCoroutines();
                 Time.timeScale = 0;
-
-                
             }
             Destroy(gameObject);
         }
@@ -72,4 +84,6 @@ public class EmptyFigureScript : MonoBehaviour
         yield return new WaitForSeconds(5);
         Destroy(gameObject);
     }
+
+    
 }
