@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class SpriteButton : MonoBehaviour
 {
+    public bool isMovingLeft;
+    public bool isMovingRight;
 
     private void OnMouseDown()
     {
-        switch(gameObject.name)
+        switch (gameObject.name)
         {
             case "MenuCrabNext":
                 {
-                    ControlScript.MenuCrab1.SetActive(false);                    
+                    ControlScript.MenuCrab1.SetActive(false);
                     ControlScript.Self.GetComponent<ControlScript>().CrabbyNextLvL();
                     ControlScript.SecondAudio.PlayOneShot(SoundControler.ButtonClick3);
                 }
@@ -43,29 +45,51 @@ public class SpriteButton : MonoBehaviour
                     ControlScript.Crab.GetComponent<Crab>().Rotation = true;
                 }
                 break;
-           
+
         }
     }
-    
-    private void OnMouseOver()
+
+    public void StartMoveLeft()
     {
-        switch (gameObject.name)
+        isMovingLeft = true;
+    }
+
+    public void StartMoveRight()
+    {
+        isMovingRight = true;
+    }
+
+    public void EndMoveLeft()
+    {
+        isMovingLeft = false;
+    }
+
+    public void EndMoveRight()
+    {
+        isMovingRight = false;
+    }
+
+#if UNITY_IOS || UNITY_ANDROID
+
+    
+#endif
+
+    private void Update()
+    {
+        if (isMovingLeft)
         {
-            
-            case "LeftStep":
-                {
-                    ControlScript.Crab.gameObject.transform.Translate(Vector2.left * Crab.speed * Time.deltaTime);
-                    ControlScript.Crab.GetComponent<Crab>().Anim.SetBool("Run left", true);
-                    ControlScript.Crab.GetComponent<Crab>().AV.PlayOneShot(SoundControler.CrabbyStep);
-                }
-                break;
-            case "RightStep":
-                {
-                    ControlScript.Crab.gameObject.transform.Translate(Vector2.right * Crab.speed * Time.deltaTime);
-                    ControlScript.Crab.GetComponent<Crab>().Anim.SetBool("Run right", true);
-                    ControlScript.Crab.GetComponent<Crab>().AV.PlayOneShot(SoundControler.CrabbyStep);
-                }
-                break;
+            Debug.Log("left step");
+            ControlScript.Crab.gameObject.transform.Translate(Vector2.left * Crab.speed * Time.deltaTime);
+            ControlScript.Crab.GetComponent<Crab>().Anim.SetBool("Run left", true);
+            ControlScript.Crab.GetComponent<Crab>().AV.PlayOneShot(SoundControler.CrabbyStep);
         }
+        else if (isMovingRight)
+        {
+            Debug.Log("Right step");
+            ControlScript.Crab.gameObject.transform.Translate(Vector2.right * Crab.speed * Time.deltaTime);
+            ControlScript.Crab.GetComponent<Crab>().Anim.SetBool("Run right", true);
+            ControlScript.Crab.GetComponent<Crab>().AV.PlayOneShot(SoundControler.CrabbyStep);
+        }
+
     }
 }

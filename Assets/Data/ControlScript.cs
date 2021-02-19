@@ -81,8 +81,9 @@ public class ControlScript : MonoBehaviour
     void Start()
     {
         Audio = Music.GetComponent<AudioSource>();
-        SecondAudio = GetComponent<AudioSource>();
+        SecondAudio = GetComponent<AudioSource>();        
         Audio.PlayOneShot(SoundControler.MainSound);
+        
     }
 
 
@@ -93,7 +94,7 @@ public class ControlScript : MonoBehaviour
 
     public void MusicON()
     {
-
+        Audio.Stop();        
     }
 
     public void OnItem()
@@ -266,6 +267,7 @@ public class ControlScript : MonoBehaviour
         SorterMenuGameOver.SetActive(false);
         Sorter.SetActive(false);
         MainMenu.SetActive(true);
+        Audio.Stop();
         Audio.PlayOneShot(SoundControler.MainSound);
     }
 
@@ -759,7 +761,8 @@ public class ControlScript : MonoBehaviour
                 }
                 break;
         }
-            
+
+        Audio.PlayOneShot(SoundControler.SorterSound);
         
     }
 
@@ -819,6 +822,8 @@ public class ControlScript : MonoBehaviour
         }
         
         GuessingContent.GetComponent<GridLayoutGroup>().enabled = false;
+
+        Audio.PlayOneShot(SoundControler.GuessingSound);
     }
 
     public void ActiveGuessing()
@@ -917,6 +922,7 @@ public class ControlScript : MonoBehaviour
         Guessing.SetActive(false);
         MainMenu.SetActive(true);
 
+        Audio.Stop();
         Audio.PlayOneShot(SoundControler.MainSound);
     }
 
@@ -972,6 +978,8 @@ public class ControlScript : MonoBehaviour
         }
 
         StartCoroutine(SpawnFigure());
+
+        Audio.PlayOneShot(SoundControler.CrabbySound);
     }
 
     public void CrabbyNextLvL()
@@ -1040,6 +1048,7 @@ public class ControlScript : MonoBehaviour
         Crabby.SetActive(false);
         MainMenu.SetActive(true);
 
+        Audio.Stop();
         Audio.PlayOneShot(SoundControler.MainSound);
     }
 

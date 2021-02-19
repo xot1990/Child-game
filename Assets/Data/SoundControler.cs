@@ -79,7 +79,7 @@ public class SoundControler : MonoBehaviour
     public static AudioClip CrabbyVictory;
 
 
-    void Start()
+    void Awake()
     {
         MainSound = _MainSound;
         SorterSound = _SorterSound;
