@@ -57,6 +57,7 @@ public class ControlScript : MonoBehaviour
     public static GameObject MenuCrab2;
     public static GameObject RotationButton;
 
+    public static GameObject stroke;
 
     // GameLvL
 
@@ -70,7 +71,7 @@ public class ControlScript : MonoBehaviour
 
     public static AudioSource Audio;
     public static AudioSource SecondAudio;
-    public AudioClip MenuMusic;
+    
 
     private void Awake()
     {
@@ -81,8 +82,10 @@ public class ControlScript : MonoBehaviour
     void Start()
     {
         Audio = Music.GetComponent<AudioSource>();
-        SecondAudio = GetComponent<AudioSource>();        
-        Audio.PlayOneShot(SoundControler.MainSound);
+        SecondAudio = GetComponent<AudioSource>();
+        Audio.clip = SoundControler.MainSound;
+        Audio.Play();
+        
         
     }
 
@@ -92,10 +95,7 @@ public class ControlScript : MonoBehaviour
 
     }
 
-    public void MusicON()
-    {
-        Audio.Stop();        
-    }
+    
 
     public void OnItem()
     {
@@ -267,8 +267,9 @@ public class ControlScript : MonoBehaviour
         SorterMenuGameOver.SetActive(false);
         Sorter.SetActive(false);
         MainMenu.SetActive(true);
-        Audio.Stop();
-        Audio.PlayOneShot(SoundControler.MainSound);
+        
+        Audio.clip = SoundControler.MainSound;
+        Audio.Play();
     }
 
     public void IniSorter()
@@ -762,7 +763,6 @@ public class ControlScript : MonoBehaviour
                 break;
         }
 
-        Audio.PlayOneShot(SoundControler.SorterSound);
         
     }
 
@@ -823,7 +823,7 @@ public class ControlScript : MonoBehaviour
         
         GuessingContent.GetComponent<GridLayoutGroup>().enabled = false;
 
-        Audio.PlayOneShot(SoundControler.GuessingSound);
+        
     }
 
     public void ActiveGuessing()
@@ -922,8 +922,8 @@ public class ControlScript : MonoBehaviour
         Guessing.SetActive(false);
         MainMenu.SetActive(true);
 
-        Audio.Stop();
-        Audio.PlayOneShot(SoundControler.MainSound);
+        Audio.clip = SoundControler.MainSound;
+        Audio.Play();
     }
 
     public void IniCrabby()
@@ -979,7 +979,7 @@ public class ControlScript : MonoBehaviour
 
         StartCoroutine(SpawnFigure());
 
-        Audio.PlayOneShot(SoundControler.CrabbySound);
+       
     }
 
     public void CrabbyNextLvL()
@@ -1048,8 +1048,8 @@ public class ControlScript : MonoBehaviour
         Crabby.SetActive(false);
         MainMenu.SetActive(true);
 
-        Audio.Stop();
-        Audio.PlayOneShot(SoundControler.MainSound);
+        Audio.clip = SoundControler.MainSound;
+        Audio.Play();
     }
 
     public IEnumerator NextLvL()

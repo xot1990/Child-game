@@ -10,25 +10,29 @@ public class Starting : MonoBehaviour
         {
             case "SorterIcon":
                 {
-                    ControlScript.Audio.PlayOneShot(SoundControler.SorterSound);
+                    ControlScript.Audio.clip = SoundControler.SorterSound;
+                    ControlScript.Audio.Play();
                     ControlScript.SecondAudio.PlayOneShot(SoundControler.StartRuleSorter);
                 }
                 break;
             case "AnimalsIcon":
                 {
-                    ControlScript.Audio.PlayOneShot(SoundControler.AnimalSound);
+                    ControlScript.Audio.clip = SoundControler.AnimalSound;
+                    ControlScript.Audio.Play();
                     ControlScript.SecondAudio.PlayOneShot(SoundControler.StartRuleAnimal);
                 }
                 break;
             case "GuessingIcon":
                 {
-                    ControlScript.Audio.PlayOneShot(SoundControler.GuessingSound);
+                    ControlScript.Audio.clip = SoundControler.GuessingSound;
+                    ControlScript.Audio.Play();
                     ControlScript.SecondAudio.PlayOneShot(SoundControler.StartRuleGuessing);
                 }
                 break;
             case "CrabbyIcon":
                 {
-                    ControlScript.Audio.PlayOneShot(SoundControler.CrabbySound);
+                    ControlScript.Audio.clip = SoundControler.CrabbySound;
+                    ControlScript.Audio.Play(); 
                     ControlScript.SecondAudio.PlayOneShot(SoundControler.StartRuleCrabby);
                 }
                 break;

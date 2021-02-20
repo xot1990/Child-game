@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class EmptyFigureScript : MonoBehaviour
@@ -7,20 +8,25 @@ public class EmptyFigureScript : MonoBehaviour
     public int ColorID;
     public int FormID;
     public GameObject Crab;
+    public GameObject Inte;
     bool _Done = false;
 
     private void Start()
     {
         Crab = GameObject.Find("Crab");
+        ControlScript.stroke = GameObject.Find("Integer");
     }
     private void FixedUpdate()
     {
+        
         if (transform.position.y - Crab.transform.position.y < 2f && !_Done)
         {
             Crab.GetComponent<Crab>().FigureContact = true;
             Crab.GetComponent<Crab>().ContactFigure = gameObject;
             _Done = true;
         }
+
+         
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
