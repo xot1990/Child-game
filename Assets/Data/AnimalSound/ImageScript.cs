@@ -15,7 +15,7 @@ public class ImageScript : MonoBehaviour
     void Start()
     {
         Image = GetComponent<Image>();
-        AV = GetComponent<AudioSource>();
+        AV = ControlScript.SecondAudio;
         Image.sprite = Resources.Load<Sprite>("AnimalSound/Default");
     }
 

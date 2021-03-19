@@ -45,7 +45,7 @@ public class FragmentScript : MonoBehaviour
 
     public void SelectFragment()
     {
-        AV.PlayOneShot(SoundControler.WrongFigure);
+        AV.PlayOneShot(SoundControler.ButtonClick1);
         ControlScript.SelectedFragment = ID; 
     }
 

@@ -1958,7 +1958,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &181731623
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3347,7 +3347,7 @@ PrefabInstance:
     - target: {fileID: 3368947784900053466, guid: 4c352cfb2d3666c43804f5b08a8970cf,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 825.82184
+      value: 825.8219
       objectReference: {fileID: 0}
     - target: {fileID: 3368947784900053466, guid: 4c352cfb2d3666c43804f5b08a8970cf,
         type: 3}
@@ -6824,7 +6824,7 @@ PrefabInstance:
     - target: {fileID: 3368947784900053466, guid: 4c352cfb2d3666c43804f5b08a8970cf,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 825.82184
+      value: 825.8219
       objectReference: {fileID: 0}
     - target: {fileID: 3368947784900053466, guid: 4c352cfb2d3666c43804f5b08a8970cf,
         type: 3}
@@ -9682,7 +9682,7 @@ PrefabInstance:
     - target: {fileID: 3368947784900053466, guid: 4c352cfb2d3666c43804f5b08a8970cf,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 825.82184
+      value: 825.8219
       objectReference: {fileID: 0}
     - target: {fileID: 3368947784900053466, guid: 4c352cfb2d3666c43804f5b08a8970cf,
         type: 3}
@@ -12322,7 +12322,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1464163568}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1464163566}
+        m_MethodName: PlaySound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1464163568
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14786,25 +14797,25 @@ MonoBehaviour:
   _GuessingSound: {fileID: 8300000, guid: e16cd3aef6c0c3a4da0a67be96b7c596, type: 3}
   _AnimalSound: {fileID: 8300000, guid: db503571b7e89f945b7e8372bde1dfdd, type: 3}
   _CrabbySound: {fileID: 8300000, guid: 92dfe0d3aca25eb449ccd14a19d08081, type: 3}
-  _ButtonClick1: {fileID: 0}
+  _ButtonClick1: {fileID: 8300000, guid: 6267ecd49902f474585d2bd1ecc4b066, type: 3}
   _ButtonClick2: {fileID: 0}
   _ButtonClick3: {fileID: 0}
   _ButtonClick4: {fileID: 0}
   _StartRuleSorter: {fileID: 0}
-  _RightStep: {fileID: 0}
-  _WrongStep: {fileID: 0}
-  _Victory: {fileID: 8300000, guid: 805e636e3510d9a4c980d815f9da3d94, type: 3}
+  _RightStep: {fileID: 8300000, guid: fbfee54f7e5597c4d82ff6212057669a, type: 3}
+  _WrongStep: {fileID: 8300000, guid: 35dfbb6e4ad0f944f86b794c2b0f0bf6, type: 3}
+  _Victory: {fileID: 8300000, guid: 5e98d28395868db4782378c82a7e8377, type: 3}
   _StartRuleAnimal: {fileID: 0}
   _StartRuleGuessing: {fileID: 0}
-  _Tup: {fileID: 0}
-  _RightCouple: {fileID: 0}
-  _GuessingVictory: {fileID: 0}
+  _Tup: {fileID: 8300000, guid: 94fff4e38f3651447a40a5e2fb4d411f, type: 3}
+  _RightCouple: {fileID: 8300000, guid: 4adf1920f9cec43438092ba31ddb2d3e, type: 3}
+  _GuessingVictory: {fileID: 8300000, guid: 5e98d28395868db4782378c82a7e8377, type: 3}
   _StartRuleCrabby: {fileID: 0}
   _CrabbyStep: {fileID: 0}
   _CrabbyClap: {fileID: 8300000, guid: 91eb52d657419534bbb49ffc936e69a5, type: 3}
   _RightFigure: {fileID: 8300000, guid: 633847a89819c9b4bad470481edd9c28, type: 3}
   _WrongFigure: {fileID: 8300000, guid: 55960f6a07b87334084eccbb35764109, type: 3}
-  _CrabbyVictory: {fileID: 0}
+  _CrabbyVictory: {fileID: 8300000, guid: 805e636e3510d9a4c980d815f9da3d94, type: 3}
 --- !u!1001 &1695964873
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15578,7 +15589,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -17028,7 +17039,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1559008353}
   m_Direction: 0
   m_Value: 0
-  m_Size: 0.9999999
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -18232,7 +18243,7 @@ PrefabInstance:
     - target: {fileID: 3368947784900053466, guid: 4c352cfb2d3666c43804f5b08a8970cf,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 825.82184
+      value: 825.8219
       objectReference: {fileID: 0}
     - target: {fileID: 3368947784900053466, guid: 4c352cfb2d3666c43804f5b08a8970cf,
         type: 3}

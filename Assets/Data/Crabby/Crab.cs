@@ -42,7 +42,7 @@ public class Crab : MonoBehaviour
         {       
             if (transform.position.x > ContactFigure.transform.position.x && FigureContact)
             {
-                ControlScript.stroke.GetComponent<Text>().text = "strike left";
+                
                 AV.PlayOneShot(SoundControler.CrabbyClap);
                 Anim.SetBool("Huk left", true);
                 FigureContact = false;
@@ -51,7 +51,7 @@ public class Crab : MonoBehaviour
 
             else if (transform.position.x < ContactFigure.transform.position.x && FigureContact)
             {
-                ControlScript.stroke.GetComponent<Text>().text = "strike right";
+
                 AV.PlayOneShot(SoundControler.CrabbyClap);
                 Anim.SetBool("Huk right", true);
                 FigureContact = false;
