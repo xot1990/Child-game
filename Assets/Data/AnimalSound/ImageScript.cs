@@ -41,7 +41,9 @@ public class ImageScript : MonoBehaviour
 
     public void PlaySound()
     {
-        AV.PlayOneShot(Sounds[Num]);
+        AV.Stop();
+        AV.clip = Sounds[Num];
+        AV.Play();
     }
 
     public void BackToMenu()
@@ -53,6 +55,8 @@ public class ImageScript : MonoBehaviour
         ControlScript.AnimalSound.SetActive(false);
         ControlScript.MainMenu.SetActive(true);
         Image.sprite = Resources.Load<Sprite>("AnimalSound/Default");
+        ControlScript.Audio.clip = SoundControler.MainSound;
+        ControlScript.Audio.Play();
     }
 
 }
