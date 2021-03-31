@@ -55,6 +55,7 @@ public class ImageScript : MonoBehaviour
         ControlScript.AnimalSound.SetActive(false);
         ControlScript.MainMenu.SetActive(true);
         Image.sprite = Resources.Load<Sprite>("AnimalSound/Default");
+        ControlScript.SecondAudio.Stop();
         ControlScript.Audio.clip = SoundControler.MainSound;
         ControlScript.Audio.Play();
     }

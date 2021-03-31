@@ -15,6 +15,7 @@ public class ControlScript : MonoBehaviour
     public static int TotalTimer = 0;
     public static int Life = 6;
     public static int _Score = 0;
+    public static bool EndSpawn;
     public static GameObject ActiveTile1 = null;
     public static GameObject ActiveTile2 = null;
 
@@ -1047,7 +1048,7 @@ public class ControlScript : MonoBehaviour
 
         Crabby.SetActive(false);
         MainMenu.SetActive(true);
-
+        EndSpawn = true;
         Audio.clip = SoundControler.MainSound;
         Audio.Play();
     }
@@ -1072,6 +1073,12 @@ public class ControlScript : MonoBehaviour
             Figure.transform.localScale = new Vector3(25, 25, 25);
             Figure.AddComponent<PolygonCollider2D>();
             if (TotalTimer >= WinTimer) break;
+            if (EndSpawn)
+            {
+                EndSpawn = false;
+                break;
+            }
+            Debug.Log("Figure created");
         }
         yield break;
     }
